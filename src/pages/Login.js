@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import './Login.css';
 import logoImg from '../assets/sponsaLogo.png';
 import passIcon from '../assets/Password.svg';
 import userIcon from '../assets/User.svg';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../store/reducers/auth';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,13 +13,21 @@ const Login = () => {
   const passwordInputRef = useRef();
   const dispatch = useDispatch();
 
+  const submitHandler = e => {
+    e.preventDefault();
+
+    const email = emailInputRef.current.value;
+    const password = passwordInputRef.current.value;
+    dispatch(loginUser({ email, password }));
+  };
+
   return (
     <div className='login'>
       <section className='login__form'>
         <div className='login__logo'>
           <img src={logoImg} alt='logo ' />
         </div>
-        <form>
+        <form onSubmit={submitHandler}>
           <div className='login__control'>
             <label htmlFor='email'>
               <img src={userIcon} alt='user' />

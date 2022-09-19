@@ -5,22 +5,23 @@ const initialState = {
   token: '',
   isLoggedIn: false,
   isLoading: false,
-  err: null,
+  error: null,
 };
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
   async (user, thunkAPI) => {
-    console.log(user, thunkAPI);
-
     return await axios
-      .post('http://192.168.1.243:3009/admin/login', user, thunkAPI)
+      .post(
+        'https://api-sponsa.worldproductsae.com/admin/login',
+        user,
+        thunkAPI
+      )
       .then(res => {
-        console.log(res);
         return res.data;
       })
       .catch(err => {
-        return err;
+        return err.response;
       });
   }
 );
@@ -30,7 +31,7 @@ export const authSlice = createSlice({
   initialState,
   extraReducers: {
     [loginUser.fulfilled]: (state, action) => {
-      console.log(action);
+      console.log(state, action);
       state.isLoggedIn = true;
       state.token = action.payload;
       state.isLoading = false;
@@ -43,8 +44,8 @@ export const authSlice = createSlice({
     //   state.isAuthenticated = false;
     // },
     [loginUser.rejected]: (state, action) => {
+      console.log('hello from rejcted');
       state.isLoading = false;
-      console.log(action);
       state.token = null;
       state.error = action.payload;
       state.isLoggedIn = false;
@@ -52,6 +53,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const getTokenState = state => state.auth.token;
+export const getUserState = state => state.auth;
 
 export default authSlice.reducer;
