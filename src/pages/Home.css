@@ -1,0 +1,58 @@
+.home {
+  height: 100vh;
+
+  display: flex;
+  flex-direction: row;
+}
+.main {
+  width: 87%;
+}
+.main h1 {
+  font-style: italic;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--color-main-darker);
+}
+
+.reports__main {
+  padding: 8rem;
+  text-align: center;
+}
+.reports__title {
+  font-size: 2rem;
+  font-weight: bold;
+  font-style: italic;
+  color: var(--color-main-darker);
+  margin-bottom: 4rem;
+}
+.reports__report {
+  width: 85%;
+  padding: 3.8rem 2rem;
+  background-color: var(--color-main-darkest);
+  text-align: start;
+  color: var(--color-white);
+  font-weight: bold;
+  border-radius: 1.5rem;
+}
+.reports__report-title {
+  margin-bottom: 4rem;
+}
+.reports__report-info {
+  font-size: 1.6rem;
+  font-style: italic;
+}
+
+thead {
+  background-color: var(--color-main-darker);
+}
+.table {
+  border-radius: 1rem;
+  border: transparent !important;
+  outline: 4px solid var(--color-main-darker);
+}
+tr {
+  height: 7.5rem;
+}
+th,
+td {
+}

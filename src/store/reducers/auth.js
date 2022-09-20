@@ -3,15 +3,15 @@ import axios from 'axios';
 
 const initialState = {
   token: '',
-  isLoggedIn: false,
   isLoading: false,
   error: null,
+  isLoggedIn: false,
 };
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',
   async (user, thunkAPI) => {
-    return await axios
+    return axios
       .post(
         'https://api-sponsa.worldproductsae.com/admin/login',
         user,
@@ -21,7 +21,8 @@ export const loginUser = createAsyncThunk(
         return res.data;
       })
       .catch(err => {
-        return err.response;
+        console.log(err.response.data);
+        return err.response.data;
       });
   }
 );
@@ -30,21 +31,30 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
-    [loginUser.fulfilled]: (state, action) => {
-      console.log(state, action);
-      state.isLoggedIn = true;
-      state.token = action.payload;
-      state.isLoading = false;
+    [loginUser.pending]: (state, action) => {
+      state.isLoading = true;
       state.error = null;
+      state.token = null;
+      state.isLoggedIn = false;
     },
-    // [loginUser.pending]: (state, action) => {
-    //   state.isLoading = true;
-    //   state.error = null;
-    //   state.token = null;
-    //   state.isAuthenticated = false;
-    // },
+    [loginUser.fulfilled]: (state, { payload }) => {
+      // console.log(payload);
+      if (payload) {
+        if (payload.status === 0) {
+          state.token = null;
+          state.isLoading = false;
+          state.error = payload.message;
+          state.isLoggedIn = false;
+          return;
+        }
+        state.token = payload.token.token;
+        state.isLoading = false;
+        state.error = null;
+        state.isLoggedIn = true;
+      }
+    },
     [loginUser.rejected]: (state, action) => {
-      console.log('hello from rejcted');
+      // console.log(action);
       state.isLoading = false;
       state.token = null;
       state.error = action.payload;
@@ -56,3 +66,22 @@ export const authSlice = createSlice({
 export const getUserState = state => state.auth;
 
 export default authSlice.reducer;
+
+// rejected login
+// {
+//     "status": 0,
+//     "message": "user not found"
+// }
+
+// this is fulfilled login response
+
+// {
+//     "status": 1,
+//     "token": {
+//         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiMSIsInVzZXJJZCI6IjYzMjc0ZjUwNmFjNTAwOTE4ZDFhMTA1MCIsInN0YXR1cyI6MSwiaWF0IjoxNjYzNjc2MDY2LCJleHAiOjE2NjYyNjgwNjZ9.N8pVcFzFizLRv5WzCRlCfw75JR4DGv_DMdZrZBgXEl8",
+//         "type": "1",
+//         "userId": "63274f506ac500918d1a1050",
+//         "exp": 2592000,
+//         "status": 1
+//     }
+// }

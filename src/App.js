@@ -1,12 +1,14 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { Home, Login } from './pages';
+import { useSelector } from 'react-redux';
+import { Login, Home } from './pages';
+
 const App = () => {
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   return (
-    <Routes>
-      <Route path='/' element={<Login />} />
-      <Route path='/home' element={<Home />} />
-    </Routes>
+    <>
+      {/* {!isLoggedIn && <Login />} */}
+      <Home />
+    </>
   );
 };
 

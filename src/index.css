@@ -10,6 +10,8 @@
   --color-shadow-btn-login: rgba(138, 138, 138, 0.25);
 
   --shadow-login: 5px 5px 6px #6a6768;
+  --shadow-sidebar-nav-inner: 0px 3px 6px var(--color-shadow-checkbox);
+  --shadow-sidebar-nav-out: 5px 3px 6px var(--color-shadow-checkbox);
 }
 
 *,
@@ -39,9 +41,10 @@ html {
   }
 }
 body {
-  font-size: 1.6rem;
+  font-size: 1.6rem !important;
   background-color: var(--color-body-bg);
   color: var(--color-white);
+  font-family: 'Merriweather', serif !important;
 }
 
 /* .container {
