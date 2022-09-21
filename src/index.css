@@ -3,14 +3,22 @@
   --color-main-darker: #a14865;
   --color-main-darkest: #7d2c46;
   --color-main-opacity: rgba(189, 100, 129, 0.7);
+
+  --color-row-odd: #fbe4eb;
+  --color-row-even: var(--color-alt);
+
   --color-alt: #fff3f7;
   --color-black: #000;
   --color-white: #fff;
   --color-shadow-checkbox: rgba(0, 0, 0, 0.16);
   --color-shadow-btn-login: rgba(138, 138, 138, 0.25);
+  --color-shadow-thead: rgba(0, 0, 0, 0.25);
+  --color-shadow-btn-login: rgba(138, 138, 138, 0.25);
 
   --shadow-login: 5px 5px 6px #6a6768;
   --shadow-sidebar-nav-inner: 0px 3px 6px var(--color-shadow-checkbox);
+  --shadow-sidebar-thead: 0px 3px 6px var(--color-shadow-thead);
+
   --shadow-sidebar-nav-out: 5px 3px 6px var(--color-shadow-checkbox);
 }
 
@@ -30,14 +38,19 @@ html {
   font-family: 'Merriweather', serif;
 }
 
+@media (max-width: 1920px) {
+  html {
+    font-size: 60%;
+  }
+}
 @media (max-width: 1540px) {
   html {
-    font-size: 55%;
+    font-size: 50%;
   }
 }
 @media (max-width: 1200px) {
   html {
-    font-size: 50%;
+    font-size: 45%;
   }
 }
 body {

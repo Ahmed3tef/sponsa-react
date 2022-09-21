@@ -4,13 +4,13 @@ import { HiHome } from 'react-icons/hi';
 import React from 'react';
 
 export const sidebarData = [
-  { title: 'Home', icon: <HiHome /> },
-  { title: 'Profile', icon: <HiHome /> },
-  { title: 'ADs', icon: <HiHome /> },
-  { title: 'Categories', icon: <HiHome /> },
-  { title: 'Subcategories', icon: <HiHome /> },
-  { title: 'Products', icon: <HiHome /> },
-  { title: 'Orders', icon: <HiHome /> },
-  { title: 'Reports', icon: <HiHome /> },
-  { title: 'Logout', icon: <HiHome /> },
+  { title: 'Home', icon: <HiHome />, tab: 'home' },
+  { title: 'Profile', icon: <HiHome />, tab: 'profile' },
+  { title: 'ADs', icon: <HiHome />, tab: 'ads' },
+  { title: 'Categories', icon: <HiHome />, tab: 'categories' },
+  { title: 'Subcategories', icon: <HiHome />, tab: 'subcategories' },
+  { title: 'Products', icon: <HiHome />, tab: 'products' },
+  { title: 'Orders', icon: <HiHome />, tab: 'orders' },
+  { title: 'Reports', icon: <HiHome />, tab: 'reports' },
+  { title: 'Logout', icon: <HiHome />, tab: 'logout' },
 ];

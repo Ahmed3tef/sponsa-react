@@ -3,13 +3,20 @@ import { sidebarData } from './sidebarData';
 import './Sidebar.css';
 import profileImg from '../../assets/Photo.png';
 import menuBar from '../../assets/burgerIcon.svg';
-const Sidebar = () => {
+const Sidebar = props => {
   // const [showSidebar, setShowSidebar] = useState(true);
   // const hideSidebarHandler = () => {
   //   setShowSidebar(!showSidebar);
   // };
 
   // {!showSidebar && ()}  ${showSidebar ? '' : ' sidebar-small'
+
+  console.log(props.currentTab);
+
+  const navLinkClickHandler = path => {
+    props.setCurrentTab(path);
+  };
+
   return (
     <aside className={`sidebar`}>
       <div className='sidebar__menu'>
@@ -22,7 +29,12 @@ const Sidebar = () => {
       <div className='sidebar__nav'>
         <div className='sidebar__section'>
           {sidebarData.map((bar, i) => (
-            <div className='sidebar__link' key={i}>
+            <div
+              className={`sidebar__link ${
+                bar.tab === props.currentTab ? 'active' : ''
+              }`}
+              key={i}
+              onClick={() => navLinkClickHandler(bar.tab)}>
               <div className='sidebar__icon'>{bar.icon}</div>
 
               <div className='sidebar__caption'>{bar.title}</div>

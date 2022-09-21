@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "2941fdf3-3d4e-482b-893f-c14e8c9456cd",
+		"name": "sponsa-api-ahmed",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16184160"
+	},
+	"item": [
+		{
+			"name": "ads",
+			"item": [
+				{
+					"name": "create ads",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiMSIsInVzZXJJZCI6IjYzMTBhNzgwOThhY2M1NWFiOTNjY2JmOSIsInN0YXR1cyI6MSwiaWF0IjoxNjYyMzA3MjQzLCJleHAiOjE2NjQ4OTkyNDN9.YO1TNZCRxrxd3tjVJetKEiip-d3T3wYD23CPO1NUtKU",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Adel/Downloads/photo-1530880371689-426becaa005c (1).jpg"
+								},
+								{
+									"key": "alt",
+									"value": "ads first image",
+									"type": "text"
+								},
+								{
+									"key": "arabicName",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "englishName",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "arabicDesc",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "englishDesc",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3008/ads/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3008",
+							"path": [
+								"ads",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all ads",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "lang",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3008/ads",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3008",
+							"path": [
+								"ads"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "lang",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3008/ads/show?id=6314cc6fd84aa81b1d133d52",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3008",
+							"path": [
+								"ads",
+								"show"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6314cc6fd84aa81b1d133d52"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update ads",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiMSIsInVzZXJJZCI6IjYzMTBhNzgwOThhY2M1NWFiOTNjY2JmOSIsInN0YXR1cyI6MSwiaWF0IjoxNjYyMzA4NjE1LCJleHAiOjE2NjQ5MDA2MTV9.hqVquNO4ZlGuGwVV8YWphW9C7N5FMDRhtCHMDgF5PXA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Adel/Downloads/photo-1530880371689-426becaa005c (1).jpg",
+									"disabled": true
+								},
+								{
+									"key": "alt",
+									"value": "ads second",
+									"type": "text"
+								},
+								{
+									"key": "arabicName",
+									"value": "تيست",
+									"type": "text"
+								},
+								{
+									"key": "englishName",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "arabicDesc",
+									"value": "بعد التعديل",
+									"type": "text"
+								},
+								{
+									"key": "englishDesc",
+									"value": "after update",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3008/ads/update?id=6314cc6fd84aa81b1d133d52",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3008",
+							"path": [
+								"ads",
+								"update"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "6314cc6fd84aa81b1d133d52"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
