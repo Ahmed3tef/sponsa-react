@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Sidebar from './components/Sidebar/Sidebar';
-import { Login, Home } from './pages';
+import { Login, Home, Ads } from './pages';
 import Layout from './pages/Layout';
 
 const App = () => {
@@ -13,7 +13,7 @@ const App = () => {
       <Layout>
         <Sidebar currentTab={currentTab} setCurrentTab={setCurrentTab} />
         {currentTab === 'home' && <Home />}
-        {/* {currentTab === 'ads' && <Ads />} */}
+        {currentTab === 'ads' && <Ads />}
       </Layout>
     </>
   );

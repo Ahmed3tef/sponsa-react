@@ -1,31 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { sidebarData } from './sidebarData';
 import './Sidebar.css';
 import profileImg from '../../assets/Photo.png';
 import menuBar from '../../assets/burgerIcon.svg';
 const Sidebar = props => {
-  // const [showSidebar, setShowSidebar] = useState(true);
-  // const hideSidebarHandler = () => {
-  //   setShowSidebar(!showSidebar);
-  // };
+  const [showSidebar, setShowSidebar] = useState(true);
+  const toggleSidebarHandler = () => {
+    setShowSidebar(!showSidebar);
+  };
 
   // {!showSidebar && ()}  ${showSidebar ? '' : ' sidebar-small'
-
-  console.log(props.currentTab);
 
   const navLinkClickHandler = path => {
     props.setCurrentTab(path);
   };
 
   return (
-    <aside className={`sidebar`}>
-      <div className='sidebar__menu'>
+    <aside className={`sidebar ${showSidebar ? '' : ' sidebar-small'}`}>
+      <div className='sidebar__menu' onClick={toggleSidebarHandler}>
         <img src={menuBar} alt='burger menuBar' />
       </div>
+
       <div className='sidebar__img'>
         <img src={profileImg} alt='profile img' />
-        <h3 className='user-name'>Hatem El-Shawaf</h3>
       </div>
+      <h3 className='user-name'>Hatem El-Shawaf</h3>
       <div className='sidebar__nav'>
         <div className='sidebar__section'>
           {sidebarData.map((bar, i) => (
