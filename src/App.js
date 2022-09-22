@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+
 import Sidebar from './components/Sidebar/Sidebar';
 import { Login, Home, Ads } from './pages';
 import Layout from './pages/Layout';
@@ -12,8 +13,11 @@ const App = () => {
       {/* {!isLoggedIn && <Login />} */}
       <Layout>
         <Sidebar currentTab={currentTab} setCurrentTab={setCurrentTab} />
-        {currentTab === 'home' && <Home />}
-        {currentTab === 'ads' && <Ads />}
+        <main className='main p-5'>
+          {currentTab === 'home' && <Home />}
+          {/* {currentTab === 'profile' && <Profile />} */}
+          {currentTab === 'ads' && <Ads />}
+        </main>
       </Layout>
     </>
   );

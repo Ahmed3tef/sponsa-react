@@ -63,8 +63,10 @@ td {
   padding: 0 !important;
 }
 .t-span {
-  height: 7rem;
+  min-height: 7rem;
+  display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 tbody tr:nth-child(even) {

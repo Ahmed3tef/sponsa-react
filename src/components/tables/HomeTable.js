@@ -8,10 +8,8 @@ const HomeTable = () => {
         <tr>
           {['#', 'Product Name', 'Orders Count', 'Total'].map((el, i) => {
             return (
-              <td td>
-                <div className='d-flex justify-content-center t-span' key={i}>
-                  {el}
-                </div>
+              <td key={i}>
+                <div className='t-span'>{el}</div>
               </td>
             );
           })}
@@ -23,10 +21,8 @@ const HomeTable = () => {
           <tr key={i}>
             {[1, 2, 3, 4].map((el, i) => {
               return (
-                <td td>
-                  <div className='d-flex justify-content-center t-span' key={i}>
-                    {el}
-                  </div>
+                <td key={i}>
+                  <div className='t-span'>{el}</div>
                 </td>
               );
             })}
