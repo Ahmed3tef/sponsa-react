@@ -6,13 +6,25 @@ const HomeTable = () => {
     <Table className={'table w-100  text-center'}>
       <thead>
         <tr>
-          {['#', 'Product Name', 'Orders Count', 'Total'].map((el, i) => {
+          <td colSpan={1}>
+            <div className='t-span'>#</div>
+          </td>
+          <td colSpan={2}>
+            <div className='t-span'>Product Name</div>
+          </td>
+          <td colSpan={1}>
+            <div className='t-span'>Orders Count</div>
+          </td>
+          <td colSpan={1}>
+            <div className='t-span'>Total</div>
+          </td>
+          {/* {['#', 'Product Name', 'Orders Count', 'Total'].map((el, i) => {
             return (
-              <td key={i}>
+              <td key={i} colSpan={1}>
                 <div className='t-span'>{el}</div>
               </td>
             );
-          })}
+          })} */}
         </tr>
       </thead>
 

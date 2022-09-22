@@ -76,6 +76,6 @@ tbody tr:nth-child(odd) {
   background: var(--color-row-odd);
 }
 
-td:first-of-type {
+/* td:first-of-type {
   padding-left: 4rem;
-}
+} */

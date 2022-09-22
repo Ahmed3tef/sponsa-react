@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import addADIcon from '../assets/Add ADs.svg';
 import { BiSearch } from 'react-icons/bi';
 import { Container, Row } from 'react-bootstrap';
 import './Ads.css';
 import { MainTable } from '../components';
+import { loadAds } from '../store/reducers/ads';
+import { useDispatch } from 'react-redux';
 const Ads = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadAds());
+  }, []);
+
   return (
     <div className='p-5 '>
       {/* <Container>

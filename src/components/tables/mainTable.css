@@ -67,3 +67,7 @@
 .t-body:nth-child(odd) {
   background: var(--color-row-odd);
 }
+
+.css-1b74o31-MuiInputBase-root-MuiDataGrid-editInputCell input {
+  font-size: 4rem !important;
+}

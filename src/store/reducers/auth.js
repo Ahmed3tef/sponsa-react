@@ -31,9 +31,12 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducer: {
-    // logout() {
-    //   state.isLoggedIn = false;
-    // }
+    logout(state) {
+      state.token = '';
+      state.isLoading = false;
+      state.error = null;
+      state.isLoggedIn = false;
+    },
   },
   extraReducers: {
     [loginUser.pending]: (state, action) => {
