@@ -42,32 +42,77 @@
   align-items: center;
   justify-content: center;
 }
-.ads .t-span {
-}
-.t-head .col,
-.t-head .col-sm-1,
-.t-head .col-sm-3,
-.t-head .col-sm-2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.t-body .col,
-.t-body .col-sm-1,
-.t-body .col-sm-3,
-.t-body .col-sm-2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.t-body:nth-child(even) {
-  background: var(--color-row-even);
-}
-.t-body:nth-child(odd) {
-  background: var(--color-row-odd);
-}
 
 .css-1b74o31-MuiInputBase-root-MuiDataGrid-editInputCell input {
   font-size: 4rem !important;
+}
+.MuiDataGrid-root {
+  border: none !important;
+  border-radius: 0 !important;
+}
+.MuiDataGrid-main {
+  border-radius: 5rem;
+  font-family: 'Merriweather', serif;
+  border: 3px solid var(--color-main-darker);
+}
+.MuiDataGrid-columnHeaders {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-white);
+  background-color: var(--color-main);
+  box-shadow: inset var(--shadow-table-thead), var(--shadow-table-thead);
+  border-bottom: 3px solid var(--color-main-darker) !important;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.MuiDataGrid-virtualScroller {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+.MuiDataGrid-columnSeparator {
+  opacity: 0 !important;
+}
+
+.css-1e2bxag-MuiDataGrid-root .MuiDataGrid-columnHeader:focus,
+.css-1e2bxag-MuiDataGrid-root .MuiDataGrid-cell:focus {
+  outline: none !important;
+}
+
+/* pagination styles */
+
+.MuiDataGrid-footerContainer {
+  border: none !important;
+}
+
+.MuiTablePagination-displayedRows {
+  font-size: 1.2rem !important;
+  color: var(--color-black);
+  font-weight: 800 !important;
+  margin-bottom: 0 !important;
+}
+
+/* table rows */
+
+.MuiDataGrid-row:nth-child(1n) {
+  background-color: var(--color-row-odd);
+}
+.MuiDataGrid-row:nth-child(1n):hover {
+  background-color: var(--color-row-odd) !important;
+}
+.MuiDataGrid-row:nth-child(2n) {
+  background-color: var(--color-row-even);
+}
+.MuiDataGrid-row:nth-child(2n):hover {
+  background-color: var(--color-row-even) !important;
+}
+
+.MuiDataGrid-cell {
+  height: 4rem !important;
+  border-bottom: none !important;
+}
+
+/* table SORT */
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+  font-size: 1.2rem !important;
+  font-weight: 500 !important;
 }

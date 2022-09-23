@@ -35,7 +35,10 @@
   fill: var(--color-main-darker);
   margin-left: 4rem;
 }
-
+.add-icon,
+.back-icon {
+  cursor: pointer;
+}
 /* .row {
   width: 100%;
 }

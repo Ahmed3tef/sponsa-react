@@ -14,10 +14,13 @@
   --color-shadow-btn-login: rgba(138, 138, 138, 0.25);
   --color-shadow-thead: rgba(0, 0, 0, 0.25);
   --color-shadow-btn-login: rgba(138, 138, 138, 0.25);
+  --color-input-placeholder: rgba(138, 138, 138, 0.5);
+  --color-btn-shadow: rgba(138, 138, 138, 0.5);
 
   --shadow-login: 5px 5px 6px #6a6768;
   --shadow-sidebar-nav-inner: 0px 3px 6px var(--color-shadow-checkbox);
   --shadow-table-thead: 0px 3px 6px var(--color-shadow-thead);
+  --shadow-btn-form: 5px 5px 6px var(--color-btn-shadow);
 
   --shadow-sidebar-nav-out: 5px 3px 6px var(--color-shadow-checkbox);
 }
