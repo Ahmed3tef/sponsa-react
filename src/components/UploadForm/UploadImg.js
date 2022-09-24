@@ -18,14 +18,16 @@ const UploadImg = props => {
       setImgAlt(e.target.files[0].name.replace(/\.[^/.]+$/, ''));
       setPreview(window.URL.createObjectURL(e.target.files[0]));
       console.log(e.target.files[0]);
-
+      console.log(e.target.files[0].name.replace(/\.[^/.]+$/, ''));
+      props.setImgAlt(e.target.files[0].name.replace(/\.[^/.]+$/, ''));
+      props.setImg(e.target.files[0]);
       return;
     }
   };
-  useEffect(() => {
-    props.setImgAlt(imgAlt);
-    props.setImg(file);
-  }, [imgAlt, file]);
+  // useEffect(() => {
+  //   props.setImgAlt(imgAlt);
+  //   props.setImg(file);
+  // }, [imgAlt, file]);
 
   return (
     <div className='img-uploader'>

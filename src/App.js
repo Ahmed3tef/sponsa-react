@@ -2,7 +2,16 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import Sidebar from './components/Sidebar/Sidebar';
-import { Login, Home, Ads } from './pages';
+import {
+  Login,
+  Home,
+  Ads,
+  Categories,
+  SubCategories,
+  Products,
+  Reports,
+  Orders,
+} from './pages';
 import Layout from './pages/Layout';
 
 const App = () => {
@@ -17,6 +26,11 @@ const App = () => {
           {currentTab === 'home' && <Home />}
           {/* {currentTab === 'profile' && <Profile />} */}
           {currentTab === 'ads' && <Ads />}
+          {currentTab === 'categories' && <Categories />}
+          {currentTab === 'subcategories' && <SubCategories />}
+          {currentTab === 'products' && <Products />}
+          {currentTab === 'reports' && <Reports />}
+          {currentTab === 'orders' && <Orders />}
         </main>
       </Layout>
     </>

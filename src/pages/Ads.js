@@ -14,9 +14,11 @@ const Ads = () => {
   const dispatch = useDispatch();
 
   const showAddADHandler = () => {
+    setUpdatedAD(null);
     setShowAddAD(true);
   };
   const goBackHandler = () => {
+    dispatch(loadAds());
     setShowAddAD(false);
   };
 
@@ -49,7 +51,7 @@ const Ads = () => {
           <div className='back-icon ' onClick={goBackHandler}>
             <img src={backIcon} alt='back icon' />
           </div>
-          <UploadForm updatedAD={updatedAD} />
+          <UploadForm updatedAD={updatedAD} goBackHandler={goBackHandler} />
         </Container>
       )}
     </>

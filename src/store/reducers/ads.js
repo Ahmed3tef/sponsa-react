@@ -49,7 +49,7 @@ export const adsSlice = createSlice({
             position: obj.position,
           };
         });
-        console.log(adsData);
+
         state.ads = adsData;
         state.isLoading = false;
         state.error = null;
