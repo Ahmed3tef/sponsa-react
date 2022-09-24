@@ -7,6 +7,7 @@ const MiniText = props => {
         <p>{props.label}</p>
       </div>
       <input
+        style={{ direction: props.direction ? 'rtl' : 'ltr' }}
         type='text'
         placeholder={props.placeholder}
         value={props.name}

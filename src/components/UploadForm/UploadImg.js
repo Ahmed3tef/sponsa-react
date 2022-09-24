@@ -1,33 +1,31 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import imgIcon from '../../assets/Add Photo.svg';
 import './UploadForm.css';
 
+import { APIBase } from '../../store/reducers/api';
+
 const UploadImg = props => {
   const [file, setFile] = useState();
-  const [preview, setPreview] = useState(null);
+  const [preview, setPreview] = useState(
+    props.existingImg ? APIBase + props.existingImg : null
+  );
   const [imgAlt, setImgAlt] = useState('');
   const fileImgInput = useRef(null);
 
   const onAddImage = e => {
     if (e.target.files[0]) {
       setFile(e.target.files[0]);
-      setImgAlt(file.name.replace(/\.[^/.]+$/, ''));
-      // window.URL.revokeObjectURL(preview);
-      setPreview(window.URL.createObjectURL(file));
-      // props.setImgAlt(file.name.replace(/\.[^/.]+$/, ''));
-      // props.setImg(window.URL.createObjectURL(file));
-      props.setImg(e.target.files[0]);
+      setImgAlt(e.target.files[0].name.replace(/\.[^/.]+$/, ''));
+      setPreview(window.URL.createObjectURL(e.target.files[0]));
+      console.log(e.target.files[0]);
 
       return;
     }
   };
-  // useEffect(() => {
-  //   first;
-
-  //   return () => {
-  //     second;
-  //   };
-  // }, [imgAlt, file]);
+  useEffect(() => {
+    props.setImgAlt(imgAlt);
+    props.setImg(file);
+  }, [imgAlt, file]);
 
   return (
     <div className='img-uploader'>
@@ -53,7 +51,7 @@ const UploadImg = props => {
           <input
             style={{ display: 'none' }}
             filename={file}
-            onChange={e => onAddImage(e)}
+            onChange={onAddImage}
             ref={fileImgInput}
             type='file'
             accept='image/*'

@@ -9,6 +9,8 @@ import { loadAds } from '../store/reducers/ads';
 import { useDispatch } from 'react-redux';
 const Ads = () => {
   const [showAddAD, setShowAddAD] = useState(false);
+  const [updatedAD, setUpdatedAD] = useState(null);
+
   const dispatch = useDispatch();
 
   const showAddADHandler = () => {
@@ -38,7 +40,7 @@ const Ads = () => {
               <img src={addADIcon} alt='add icon' />
             </div>
           </div>
-          <MainTable />
+          <MainTable setShowAddAD={setShowAddAD} setUpdatedAD={setUpdatedAD} />
         </Container>
       )}
 
@@ -47,7 +49,7 @@ const Ads = () => {
           <div className='back-icon ' onClick={goBackHandler}>
             <img src={backIcon} alt='back icon' />
           </div>
-          <UploadForm />
+          <UploadForm updatedAD={updatedAD} />
         </Container>
       )}
     </>

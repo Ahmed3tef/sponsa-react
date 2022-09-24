@@ -7,19 +7,26 @@ import LargeText from './LargeText';
 import axios from 'axios';
 import { APIBase } from '../../store/reducers/api';
 
-const UploadForm = () => {
-  const [arabicName, setArabicName] = useState('');
-  const [englishName, setEnglishName] = useState('');
-  const [arabicDesc, setArabicDesc] = useState('');
-  const [englishDesc, setEnglishDesc] = useState('');
-  const [img, setImg] = useState(null);
-
-  const [imgAlt, setImgAlt] = useState('');
+const UploadForm = ({ updatedAD }) => {
+  const [arabicName, setArabicName] = useState(
+    updatedAD ? updatedAD.arabicName : ''
+  );
+  const [englishName, setEnglishName] = useState(
+    updatedAD ? updatedAD.englishName : ''
+  );
+  const [arabicDesc, setArabicDesc] = useState(
+    updatedAD ? updatedAD.arabicDesc : ''
+  );
+  const [englishDesc, setEnglishDesc] = useState(
+    updatedAD ? updatedAD.englishDesc : ''
+  );
+  const [img, setImg] = useState(updatedAD ? APIBase + updatedAD.imgUrl : '');
+  const [imgAlt, setImgAlt] = useState(updatedAD ? updatedAD.imgAlt : '');
   const uploadADHandler = () => {
     console.log(img);
 
-    let formData = new FormData();
-    formData.append('image', img);
+    const fd = new FormData();
+    fd.append('image', img);
 
     const config = {
       headers: {
@@ -31,8 +38,8 @@ const UploadForm = () => {
       .post(
         `${APIBase}ads/create`,
         {
-          image: formData,
-          alt: 'sdfasdfsa',
+          image: fd,
+          alt: imgAlt,
           arabicName,
           englishName,
           arabicDesc,
@@ -48,13 +55,17 @@ const UploadForm = () => {
 
   return (
     <div className='form-container'>
-      <UploadImg setImg={setImg} setImgAlt={setImgAlt} />
+      <UploadImg
+        existingImg={updatedAD ? updatedAD.imgUrl : null}
+        setImg={setImg}
+        setImgAlt={setImgAlt}
+      />
       <div className='text-container'>
         <MiniText
           placeholder='Add AD title here ...'
           label='AD Title'
-          setName={setArabicName}
-          name={arabicName}
+          setName={setEnglishName}
+          name={englishName}
         />
         <LargeText
           placeholder='Add AD description here ...'
@@ -67,19 +78,21 @@ const UploadForm = () => {
         <MiniText
           placeholder=' ...أضف عنوان الإعلان هنا'
           label='عنوان الإعلان'
-          setName={setEnglishName}
-          name={englishName}
+          setName={setArabicName}
+          name={arabicName}
+          direction='rtl'
         />
         <LargeText
           placeholder=' ...أضف وصف الإعلان هنا'
           label='وصف الإعلان'
           desc={arabicDesc}
           setDesc={setArabicDesc}
+          direction='rtl'
         />
       </div>
       <div className='form-btns'>
         <div className='form-btn' onClick={uploadADHandler}>
-          Upload
+          {updatedAD ? 'Save' : 'Upload'}
         </div>
         <div className='form-btn'>Cancel</div>
       </div>

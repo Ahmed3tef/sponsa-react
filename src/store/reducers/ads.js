@@ -15,7 +15,6 @@ export const loadAds = createAsyncThunk('ads/loadAds', async thunkAPI => {
       return res.data;
     })
     .catch(err => {
-      console.log(err.response.data);
       return err.response.data;
     });
 });

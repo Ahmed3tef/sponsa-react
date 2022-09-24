@@ -11,6 +11,7 @@
   overflow: hidden;
   margin: 1rem 0;
   border-radius: 3rem;
+  box-shadow: var(--shadow-sidebar-nav-inner);
 }
 .t-prod img {
   width: 100%;
