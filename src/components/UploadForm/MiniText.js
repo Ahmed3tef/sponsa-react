@@ -6,7 +6,14 @@ const MiniText = props => {
       <div className='input-label'>
         <p>{props.label}</p>
       </div>
-      <input type='text' placeholder={props.placeholder} />
+      <input
+        type='text'
+        placeholder={props.placeholder}
+        value={props.name}
+        onChange={event => {
+          props.setName(event.target.value);
+        }}
+      />
     </div>
   );
 };

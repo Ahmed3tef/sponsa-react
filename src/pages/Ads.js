@@ -25,7 +25,7 @@ const Ads = () => {
   return (
     <>
       {!showAddAD && (
-        <div className='p-5 '>
+        <Container>
           <div className='ads__header'>
             <div className='table-header'>
               <span>Active ADs</span>
@@ -39,7 +39,7 @@ const Ads = () => {
             </div>
           </div>
           <MainTable />
-        </div>
+        </Container>
       )}
 
       {showAddAD && (

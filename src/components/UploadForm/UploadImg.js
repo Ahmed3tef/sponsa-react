@@ -2,20 +2,33 @@ import React, { useRef, useState } from 'react';
 import imgIcon from '../../assets/Add Photo.svg';
 import './UploadForm.css';
 
-const UploadImg = () => {
+const UploadImg = props => {
   const [file, setFile] = useState();
   const [preview, setPreview] = useState(null);
   const [imgAlt, setImgAlt] = useState('');
   const fileImgInput = useRef(null);
 
-  const onAddImage = file => {
-    if (file) {
+  const onAddImage = e => {
+    if (e.target.files[0]) {
+      setFile(e.target.files[0]);
       setImgAlt(file.name.replace(/\.[^/.]+$/, ''));
-      window.URL.revokeObjectURL(preview);
+      // window.URL.revokeObjectURL(preview);
       setPreview(window.URL.createObjectURL(file));
+      // props.setImgAlt(file.name.replace(/\.[^/.]+$/, ''));
+      // props.setImg(window.URL.createObjectURL(file));
+      props.setImg(e.target.files[0]);
+
       return;
     }
   };
+  // useEffect(() => {
+  //   first;
+
+  //   return () => {
+  //     second;
+  //   };
+  // }, [imgAlt, file]);
+
   return (
     <div className='img-uploader'>
       <div className='input-label'>
@@ -40,7 +53,7 @@ const UploadImg = () => {
           <input
             style={{ display: 'none' }}
             filename={file}
-            onChange={e => onAddImage(e.target.files[0])}
+            onChange={e => onAddImage(e)}
             ref={fileImgInput}
             type='file'
             accept='image/*'

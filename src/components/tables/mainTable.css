@@ -62,8 +62,6 @@
   background-color: var(--color-main);
   box-shadow: inset var(--shadow-table-thead), var(--shadow-table-thead);
   border-bottom: 3px solid var(--color-main-darker) !important;
-  padding-left: 2rem;
-  padding-right: 2rem;
 }
 .MuiDataGrid-virtualScroller {
   font-size: 1.2rem;
@@ -115,4 +113,37 @@
 .css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
   font-size: 1.2rem !important;
   font-weight: 500 !important;
+}
+
+.MuiDataGrid-row,
+.MuiDataGrid-row--lastVisible {
+  max-height: 18rem !important;
+  min-height: 7rem !important;
+  border-bottom: 2px solid #ddd;
+  box-shadow: var(--shadow-table-row);
+}
+
+.MuiDataGrid-cell {
+  min-height: 18rem !important;
+  max-height: 100% !important;
+  /* justify-content: center !important; */
+}
+.css-1e2bxag-MuiDataGrid-root .MuiDataGrid-cellContent {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  white-space: initial !important;
+  text-align: center;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.e-d-icons img {
+  cursor: pointer;
 }

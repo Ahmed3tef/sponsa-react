@@ -6,7 +6,11 @@ const LargeText = props => {
       <div className='input-label'>
         <p>{props.label}</p>
       </div>
-      <textarea placeholder={props.placeholder} />
+      <textarea
+        placeholder={props.placeholder}
+        value={props.desc}
+        onChange={e => props.setDesc(e.target.value)}
+      />
     </div>
   );
 };
