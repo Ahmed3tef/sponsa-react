@@ -1,9 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authSlice from './reducers/auth';
-import adsSlice from './reducers/ads';
+import {
+  adsSlice,
+  authSlice,
+  categoriesSlice,
+  subCategoriesSlice,
+} from './reducers';
+
 export const store = configureStore({
   reducer: {
     auth: authSlice,
     ads: adsSlice,
+    categories: categoriesSlice,
+    subCategories: subCategoriesSlice,
   },
 });

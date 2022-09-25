@@ -37,7 +37,7 @@ export const adsSlice = createSlice({
           state.error = payload.message;
           return;
         }
-        let adsData = payload.data.map(obj => {
+        let adsData = payload.data.map((obj, i) => {
           return {
             id: obj.id,
             englishName: obj.names.english,
@@ -46,7 +46,7 @@ export const adsSlice = createSlice({
             arabicDesc: obj.description.arabic,
             imgUrl: obj.image.imageUrl,
             imgAlt: obj.image.alt,
-            position: obj.position,
+            position: i + 1,
           };
         });
 

@@ -7,18 +7,12 @@ import LargeText from './LargeText';
 import axios from 'axios';
 import { APIBase } from '../../store/reducers/api';
 
-const UploadForm = ({ updatedPage, goBackHandler }) => {
+const UploadCategory = ({ updatedPage, goBackHandler }) => {
   const [arabicName, setArabicName] = useState(
     updatedPage ? updatedPage.arabicName : ''
   );
   const [englishName, setEnglishName] = useState(
     updatedPage ? updatedPage.englishName : ''
-  );
-  const [arabicDesc, setArabicDesc] = useState(
-    updatedPage ? updatedPage.arabicDesc : ''
-  );
-  const [englishDesc, setEnglishDesc] = useState(
-    updatedPage ? updatedPage.englishDesc : ''
   );
   const [img, setImg] = useState(
     updatedPage ? APIBase + updatedPage.imgUrl : ''
@@ -33,8 +27,7 @@ const UploadForm = ({ updatedPage, goBackHandler }) => {
     fd.append('alt', imgAlt);
     fd.append('arabicName', arabicName);
     fd.append('englishName', englishName);
-    fd.append('arabicDesc', arabicDesc);
-    fd.append('englishDesc', englishDesc);
+
     const config = {
       headers: {
         authorization:
@@ -44,7 +37,7 @@ const UploadForm = ({ updatedPage, goBackHandler }) => {
     if (updatedPage) {
       // console.log(updatedAD);
       axios
-        .patch(`${APIBase}ads/update?id=${updatedPage.id}`, fd, config)
+        .patch(`${APIBase}cat/update?id=${updatedPage.id}`, fd, config)
         .then(res => {
           console.log(res);
           goBackHandler();
@@ -53,7 +46,7 @@ const UploadForm = ({ updatedPage, goBackHandler }) => {
       return;
     }
     axios
-      .post(`${APIBase}ads/create`, fd, config)
+      .post(`${APIBase}cat/create`, fd, config)
       .then(res => {
         console.log(res);
         goBackHandler();
@@ -67,39 +60,26 @@ const UploadForm = ({ updatedPage, goBackHandler }) => {
         existingImg={updatedPage ? updatedPage.imgUrl : null}
         setImg={setImg}
         setImgAlt={setImgAlt}
-        title={['AD Photo', 'صورة الإعلان']}
+        title={['Category Photo', 'صورة الفئة']}
       />
-      <div className='text-container'>
+      <div className='text-container mb-5 mt-5'>
         <MiniText
-          placeholder='Add AD title here ...'
-          label='AD Title'
+          placeholder='Add Category title here ...'
+          label='Category Title'
           setName={setEnglishName}
           name={englishName}
         />
-        <LargeText
-          placeholder='Add AD description here ...'
-          label='AD Description'
-          desc={englishDesc}
-          setDesc={setEnglishDesc}
-        />
       </div>
-      <div className='text-container'>
+      <div className='text-container mb-5 mt-5'>
         <MiniText
-          placeholder=' ...أضف عنوان الإعلان هنا'
-          label='عنوان الإعلان'
+          placeholder=' ...أضف عنوان الفئة هنا'
+          label='عنوان الفئة'
           setName={setArabicName}
           name={arabicName}
           direction='rtl'
         />
-        <LargeText
-          placeholder=' ...أضف وصف الإعلان هنا'
-          label='وصف الإعلان'
-          desc={arabicDesc}
-          setDesc={setArabicDesc}
-          direction='rtl'
-        />
       </div>
-      <div className='form-btns'>
+      <div className='form-btns mt-5'>
         <div className='form-btn' onClick={uploadADHandler}>
           {updatedPage ? 'Save' : 'Upload'}
         </div>
@@ -109,4 +89,4 @@ const UploadForm = ({ updatedPage, goBackHandler }) => {
   );
 };
 
-export default UploadForm;
+export default UploadCategory;

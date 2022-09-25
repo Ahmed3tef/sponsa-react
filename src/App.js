@@ -12,6 +12,7 @@ import {
   Reports,
   Orders,
 } from './pages';
+import Adds from './pages/Adds';
 import Layout from './pages/Layout';
 
 const App = () => {
@@ -25,7 +26,7 @@ const App = () => {
         <main className='main p-5'>
           {currentTab === 'home' && <Home />}
           {/* {currentTab === 'profile' && <Profile />} */}
-          {currentTab === 'ads' && <Ads />}
+          {currentTab === 'ads' && <Adds />}
           {currentTab === 'categories' && <Categories />}
           {currentTab === 'subcategories' && <SubCategories />}
           {currentTab === 'products' && <Products />}

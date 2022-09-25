@@ -32,8 +32,8 @@ const UploadImg = props => {
   return (
     <div className='img-uploader'>
       <div className='input-label'>
-        <p>AD Photo</p>
-        <p>صورة الإعلان</p>
+        <p>{props.title[0]}</p>
+        <p> {props.title[1]}</p>
       </div>
       <div className='upload-card'>
         <div

@@ -7,24 +7,22 @@ import LargeText from './LargeText';
 import axios from 'axios';
 import { APIBase } from '../../store/reducers/api';
 
-const UploadForm = ({ updatedPage, goBackHandler }) => {
+const UploadSubCategory = ({ updatedPage, goBackHandler }) => {
   const [arabicName, setArabicName] = useState(
     updatedPage ? updatedPage.arabicName : ''
   );
   const [englishName, setEnglishName] = useState(
     updatedPage ? updatedPage.englishName : ''
   );
-  const [arabicDesc, setArabicDesc] = useState(
-    updatedPage ? updatedPage.arabicDesc : ''
+  const [catId, setCatId] = useState(
+    updatedPage ? updatedPage.category.id : ''
   );
-  const [englishDesc, setEnglishDesc] = useState(
-    updatedPage ? updatedPage.englishDesc : ''
-  );
+
   const [img, setImg] = useState(
     updatedPage ? APIBase + updatedPage.imgUrl : ''
   );
   const [imgAlt, setImgAlt] = useState(updatedPage ? updatedPage.imgAlt : '');
-  console.log(updatedPage);
+
   const uploadADHandler = () => {
     console.log(img);
 
@@ -33,18 +31,19 @@ const UploadForm = ({ updatedPage, goBackHandler }) => {
     fd.append('alt', imgAlt);
     fd.append('arabicName', arabicName);
     fd.append('englishName', englishName);
-    fd.append('arabicDesc', arabicDesc);
-    fd.append('englishDesc', englishDesc);
+    fd.append('catId', catId);
+
     const config = {
       headers: {
         authorization:
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiMSIsInVzZXJJZCI6IjYzMjc0ZjUwNmFjNTAwOTE4ZDFhMTA1MCIsInN0YXR1cyI6MSwiaWF0IjoxNjYzOTgwNDM5LCJleHAiOjE2NjY1NzI0Mzl9.Iqfmp-AnQ03Km85vyiYM5PCLZFuktUGDXZwymps5xrA',
+        id: catId,
       },
     };
     if (updatedPage) {
       // console.log(updatedAD);
       axios
-        .patch(`${APIBase}ads/update?id=${updatedPage.id}`, fd, config)
+        .patch(`${APIBase}subcat/update?id=${updatedPage.id}`, fd, config)
         .then(res => {
           console.log(res);
           goBackHandler();
@@ -53,12 +52,12 @@ const UploadForm = ({ updatedPage, goBackHandler }) => {
       return;
     }
     axios
-      .post(`${APIBase}ads/create`, fd, config)
+      .post(`${APIBase}subcat/create`, fd, config)
       .then(res => {
         console.log(res);
         goBackHandler();
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err, catId));
   };
 
   return (
@@ -67,39 +66,26 @@ const UploadForm = ({ updatedPage, goBackHandler }) => {
         existingImg={updatedPage ? updatedPage.imgUrl : null}
         setImg={setImg}
         setImgAlt={setImgAlt}
-        title={['AD Photo', 'صورة الإعلان']}
+        title={['Subcategory Photo', 'صورة الفئة الفرعية']}
       />
-      <div className='text-container'>
+      <div className='text-container mb-5 mt-5'>
         <MiniText
-          placeholder='Add AD title here ...'
-          label='AD Title'
+          placeholder='Add Subcategory title here ...'
+          label='Subcategory Title'
           setName={setEnglishName}
           name={englishName}
         />
-        <LargeText
-          placeholder='Add AD description here ...'
-          label='AD Description'
-          desc={englishDesc}
-          setDesc={setEnglishDesc}
-        />
       </div>
-      <div className='text-container'>
+      <div className='text-container mb-5 mt-5'>
         <MiniText
-          placeholder=' ...أضف عنوان الإعلان هنا'
-          label='عنوان الإعلان'
+          placeholder=' ...أضف عنوان الفئة الفرعية هنا'
+          label='عنوان الفئة الفرعية'
           setName={setArabicName}
           name={arabicName}
           direction='rtl'
         />
-        <LargeText
-          placeholder=' ...أضف وصف الإعلان هنا'
-          label='وصف الإعلان'
-          desc={arabicDesc}
-          setDesc={setArabicDesc}
-          direction='rtl'
-        />
       </div>
-      <div className='form-btns'>
+      <div className='form-btns mt-5'>
         <div className='form-btn' onClick={uploadADHandler}>
           {updatedPage ? 'Save' : 'Upload'}
         </div>
@@ -109,4 +95,4 @@ const UploadForm = ({ updatedPage, goBackHandler }) => {
   );
 };
 
-export default UploadForm;
+export default UploadSubCategory;
