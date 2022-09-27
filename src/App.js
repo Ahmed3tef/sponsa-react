@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+
 import Sidebar from './components/Sidebar/Sidebar';
 import {
   Login,
@@ -12,7 +16,7 @@ import {
   Reports,
   Orders,
 } from './pages';
-import Adds from './pages/Adds';
+
 import Layout from './pages/Layout';
 
 const App = () => {
@@ -26,13 +30,23 @@ const App = () => {
         <main className='main p-5'>
           {currentTab === 'home' && <Home />}
           {/* {currentTab === 'profile' && <Profile />} */}
-          {currentTab === 'ads' && <Adds />}
+          {currentTab === 'ads' && <Ads />}
           {currentTab === 'categories' && <Categories />}
           {currentTab === 'subcategories' && <SubCategories />}
           {currentTab === 'products' && <Products />}
           {currentTab === 'reports' && <Reports />}
           {currentTab === 'orders' && <Orders />}
         </main>
+        <ToastContainer
+          position='top-right'
+          autoClose={5000}
+          hideProgressBar={true}
+          newestOnTop={true}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+        />
       </Layout>
     </>
   );

@@ -6,6 +6,8 @@ import LargeText from './LargeText';
 
 import axios from 'axios';
 import { APIBase } from '../../store/reducers/api';
+import { toast } from 'react-toastify';
+import uploadAndEdit from './upload-edit';
 
 const UploadForm = ({ updatedPage, goBackHandler }) => {
   const [arabicName, setArabicName] = useState(
@@ -25,9 +27,8 @@ const UploadForm = ({ updatedPage, goBackHandler }) => {
   );
   const [imgAlt, setImgAlt] = useState(updatedPage ? updatedPage.imgAlt : '');
   console.log(updatedPage);
-  const uploadADHandler = () => {
-    console.log(img);
 
+  const uploadADHandler = () => {
     const fd = new FormData();
     fd.append('image', img);
     fd.append('alt', imgAlt);
@@ -41,24 +42,7 @@ const UploadForm = ({ updatedPage, goBackHandler }) => {
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiMSIsInVzZXJJZCI6IjYzMjc0ZjUwNmFjNTAwOTE4ZDFhMTA1MCIsInN0YXR1cyI6MSwiaWF0IjoxNjYzOTgwNDM5LCJleHAiOjE2NjY1NzI0Mzl9.Iqfmp-AnQ03Km85vyiYM5PCLZFuktUGDXZwymps5xrA',
       },
     };
-    if (updatedPage) {
-      // console.log(updatedAD);
-      axios
-        .patch(`${APIBase}ads/update?id=${updatedPage.id}`, fd, config)
-        .then(res => {
-          console.log(res);
-          goBackHandler();
-        })
-        .catch(err => console.log(err));
-      return;
-    }
-    axios
-      .post(`${APIBase}ads/create`, fd, config)
-      .then(res => {
-        console.log(res);
-        goBackHandler();
-      })
-      .catch(err => console.log(err));
+    uploadAndEdit(updatedPage, 'ads', fd, config, goBackHandler, 'AD');
   };
 
   return (
@@ -103,7 +87,9 @@ const UploadForm = ({ updatedPage, goBackHandler }) => {
         <div className='form-btn' onClick={uploadADHandler}>
           {updatedPage ? 'Save' : 'Upload'}
         </div>
-        <div className='form-btn'>Cancel</div>
+        <div className='form-btn' onClick={goBackHandler}>
+          Cancel
+        </div>
       </div>
     </div>
   );

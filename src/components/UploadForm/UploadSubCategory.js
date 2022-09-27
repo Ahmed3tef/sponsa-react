@@ -6,6 +6,10 @@ import LargeText from './LargeText';
 
 import axios from 'axios';
 import { APIBase } from '../../store/reducers/api';
+import uploadAndEdit from './upload-edit';
+import Selector from './Selector';
+import { loadCategories } from '../../store/reducers/categories';
+import { useDispatch } from 'react-redux';
 
 const UploadSubCategory = ({ updatedPage, goBackHandler }) => {
   const [arabicName, setArabicName] = useState(
@@ -23,9 +27,12 @@ const UploadSubCategory = ({ updatedPage, goBackHandler }) => {
   );
   const [imgAlt, setImgAlt] = useState(updatedPage ? updatedPage.imgAlt : '');
 
-  const uploadADHandler = () => {
-    console.log(img);
+  const dispatch = useDispatch();
+  useState(() => {
+    dispatch(loadCategories());
+  }, []);
 
+  const uploadADHandler = () => {
     const fd = new FormData();
     fd.append('image', img);
     fd.append('alt', imgAlt);
@@ -40,24 +47,14 @@ const UploadSubCategory = ({ updatedPage, goBackHandler }) => {
         id: catId,
       },
     };
-    if (updatedPage) {
-      // console.log(updatedAD);
-      axios
-        .patch(`${APIBase}subcat/update?id=${updatedPage.id}`, fd, config)
-        .then(res => {
-          console.log(res);
-          goBackHandler();
-        })
-        .catch(err => console.log(err));
-      return;
-    }
-    axios
-      .post(`${APIBase}subcat/create`, fd, config)
-      .then(res => {
-        console.log(res);
-        goBackHandler();
-      })
-      .catch(err => console.log(err, catId));
+    uploadAndEdit(
+      updatedPage,
+      'subcat',
+      fd,
+      config,
+      goBackHandler,
+      'Subcategory'
+    );
   };
 
   return (
@@ -85,11 +82,25 @@ const UploadSubCategory = ({ updatedPage, goBackHandler }) => {
           direction='rtl'
         />
       </div>
+      <div className='text-container mb-5 mt-5'>
+        <Selector
+          label={
+            <>
+              <p>Main Category</p>
+              <p>الفئة الرئيسية</p>
+            </>
+          }
+          catId={catId}
+          setCatId={setCatId}
+        />
+      </div>
       <div className='form-btns mt-5'>
         <div className='form-btn' onClick={uploadADHandler}>
           {updatedPage ? 'Save' : 'Upload'}
         </div>
-        <div className='form-btn'>Cancel</div>
+        <div className='form-btn' onClick={goBackHandler}>
+          Cancel
+        </div>
       </div>
     </div>
   );

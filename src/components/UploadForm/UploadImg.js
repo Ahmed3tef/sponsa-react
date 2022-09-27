@@ -5,17 +5,16 @@ import './UploadForm.css';
 import { APIBase } from '../../store/reducers/api';
 
 const UploadImg = props => {
-  const [file, setFile] = useState();
+  const [imgFile, setImgFile] = useState();
   const [preview, setPreview] = useState(
     props.existingImg ? APIBase + props.existingImg : null
   );
-  const [imgAlt, setImgAlt] = useState('');
+
   const fileImgInput = useRef(null);
 
   const onAddImage = e => {
     if (e.target.files[0]) {
-      setFile(e.target.files[0]);
-      setImgAlt(e.target.files[0].name.replace(/\.[^/.]+$/, ''));
+      setImgFile(e.target.files[0]);
       setPreview(window.URL.createObjectURL(e.target.files[0]));
       console.log(e.target.files[0]);
       console.log(e.target.files[0].name.replace(/\.[^/.]+$/, ''));
@@ -52,7 +51,7 @@ const UploadImg = props => {
 
           <input
             style={{ display: 'none' }}
-            filename={file}
+            filename={imgFile}
             onChange={onAddImage}
             ref={fileImgInput}
             type='file'

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import backIcon from '../../assets/backIcon.svg';
 
 import { Container } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 
 import {
   MainTablePage,
@@ -11,7 +12,6 @@ import {
   UploadSubCategory,
 } from '..';
 
-import { useDispatch } from 'react-redux';
 const MainPageLayout = props => {
   const [showAddPage, setShowAddPage] = useState(false);
   const [updatedPage, setUpdatedPage] = useState(null);

@@ -33,7 +33,7 @@
   font-weight: 800;
   box-shadow: inset var(--shadow-table-thead), var(--shadow-table-thead);
 }
-.ads td {
+/* .ads td {
   border-bottom-width: 0 !important;
   padding: 0 !important;
 
@@ -42,6 +42,18 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+} */
+
+/* table header */
+.css-f3jnds-MuiDataGrid-columnHeaders {
+  min-height: 8rem !important;
+  max-height: 8rem !important;
+  background-color: var(--color-main);
+  box-shadow: inset var(--shadow-table-thead), var(--shadow-table-thead);
+  border-bottom: 3px solid var(--color-main-darker) !important;
+}
+.css-1e2bxag-MuiDataGrid-root .MuiDataGrid-columnHeader {
+  height: 8rem !important;
 }
 
 .css-1b74o31-MuiInputBase-root-MuiDataGrid-editInputCell input {
@@ -55,14 +67,12 @@
   border-radius: 5rem;
   font-family: 'Merriweather', serif;
   border: 3px solid var(--color-main-darker);
+  background-color: var(--color-main-darker);
 }
 .MuiDataGrid-columnHeaders {
   font-size: 1.6rem;
   font-weight: 800;
   color: var(--color-white);
-  background-color: var(--color-main);
-  box-shadow: inset var(--shadow-table-thead), var(--shadow-table-thead);
-  border-bottom: 3px solid var(--color-main-darker) !important;
 }
 .MuiDataGrid-virtualScroller {
   font-size: 1.2rem;
