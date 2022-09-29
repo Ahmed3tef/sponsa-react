@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 
 import { ToastContainer } from 'react-toastify';
 
@@ -28,6 +29,9 @@ const App = () => {
       <Layout>
         <Sidebar currentTab={currentTab} setCurrentTab={setCurrentTab} />
         <main className='main p-5'>
+          <Routes>
+            <Route />
+          </Routes>
           {currentTab === 'home' && <Home />}
           {/* {currentTab === 'profile' && <Profile />} */}
           {currentTab === 'ads' && <Ads />}

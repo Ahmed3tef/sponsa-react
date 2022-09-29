@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { APIBase } from './api';
+import loadData from './loadData';
 
 const initialState = {
   ads: [],
@@ -8,16 +9,9 @@ const initialState = {
   error: null,
 };
 
-export const loadAds = createAsyncThunk('ads/loadAds', async thunkAPI => {
-  return axios
-    .get(`${APIBase}ads`, thunkAPI)
-    .then(res => {
-      return res.data;
-    })
-    .catch(err => {
-      return err.response.data;
-    });
-});
+export const loadAds = createAsyncThunk('ads/loadAds', thunkAPI =>
+  loadData(thunkAPI, 'ads')
+);
 
 export const adsSlice = createSlice({
   name: 'ads',

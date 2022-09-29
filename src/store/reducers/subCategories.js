@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { APIBase } from './api';
+import loadData from './loadData';
 
 const initialState = {
   subCategories: [],
@@ -10,16 +9,7 @@ const initialState = {
 
 export const loadSubCategories = createAsyncThunk(
   'subCategories/loadSubCategories',
-  async thunkAPI => {
-    return axios
-      .get(`${APIBase}subcat?catId=63307df08dadd857244e559c`, thunkAPI)
-      .then(res => {
-        return res.data;
-      })
-      .catch(err => {
-        return err.response.data;
-      });
-  }
+  thunkAPI => loadData(thunkAPI, 'subcat/all')
 );
 
 export const subCategoriesSlice = createSlice({

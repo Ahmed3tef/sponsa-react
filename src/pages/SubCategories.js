@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { MainPageLayout } from '../components';
-import { loadCategories } from '../store/reducers/categories';
+
 import addIcon from '../assets/Add Subcategories.svg';
 import { loadSubCategories } from '../store/reducers/subCategories';
 

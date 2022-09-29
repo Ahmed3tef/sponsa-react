@@ -39,7 +39,7 @@ export default function MainTable(props) {
       align: 'center',
       renderCell: params => {
         return (
-          <div className='t-prod'>
+          <div className='t-img'>
             <img
               src={`${APIBase}${params.row.imgUrl}`}
               alt={params.row.imgAlt}

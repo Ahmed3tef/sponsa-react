@@ -2,9 +2,6 @@ import React, { useRef, useState } from 'react';
 import UploadImg from './UploadImg';
 import './UploadForm.css';
 import MiniText from './MiniText';
-import LargeText from './LargeText';
-
-import axios from 'axios';
 import { APIBase } from '../../store/reducers/api';
 import uploadAndEdit from './upload-edit';
 import Selector from './Selector';

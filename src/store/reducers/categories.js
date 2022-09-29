@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { APIBase } from './api';
+import loadData from './loadData';
 
 const initialState = {
   categories: [],
@@ -10,16 +11,7 @@ const initialState = {
 
 export const loadCategories = createAsyncThunk(
   'categories/loadCategories',
-  async thunkAPI => {
-    return axios
-      .get(`${APIBase}cat`, thunkAPI)
-      .then(res => {
-        return res.data;
-      })
-      .catch(err => {
-        return err.response.data;
-      });
-  }
+  thunkAPI => loadData(thunkAPI, 'cat')
 );
 
 export const categoriesSlice = createSlice({

@@ -3,6 +3,7 @@ import {
   adsSlice,
   authSlice,
   categoriesSlice,
+  productsSlice,
   subCategoriesSlice,
 } from './reducers';
 
@@ -12,5 +13,6 @@ export const store = configureStore({
     ads: adsSlice,
     categories: categoriesSlice,
     subCategories: subCategoriesSlice,
+    products: productsSlice,
   },
 });
