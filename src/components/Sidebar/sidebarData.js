@@ -1,5 +1,5 @@
-import profileImg from '../../assets/profile.svg';
-import SidebarIcon from '../icons/SidebarIcon';
+// import profileImg from '../../assets/profile.svg';
+// import SidebarIcon from '../icons/SidebarIcon';
 import { HiHome } from 'react-icons/hi';
 import React from 'react';
 

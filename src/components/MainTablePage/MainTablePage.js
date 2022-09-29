@@ -4,11 +4,6 @@ import { BiSearch } from 'react-icons/bi';
 import { MainTable } from '../';
 import './MainTablePage.css';
 const MainTablePage = props => {
-  const setUp = upObject => {
-    console.log(upObject);
-    props.setUpdatedPage(upObject);
-  };
-
   return (
     <Container>
       <div className='table__header'>
@@ -24,11 +19,11 @@ const MainTablePage = props => {
         </div>
       </div>
       <MainTable
+        path={props.path}
+        data={props.data}
         updatedPage={props.updatedPage}
         setShowAddAD={props.setShowAddPage}
         setUpdatedPage={props.setUpdatedPage}
-        data={props.data}
-        pagination={props.pagination}
         image={props.image}
         englishName={props.englishName}
         arabicName={props.arabicName}

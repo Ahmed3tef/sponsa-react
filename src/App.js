@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+// import { useSelector } from 'react-redux';
+// import { Route, Routes } from 'react-router-dom';
 
 import { ToastContainer } from 'react-toastify';
 
@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Sidebar from './components/Sidebar/Sidebar';
 import {
-  Login,
+  // Login,
   Home,
   Ads,
   Categories,
@@ -21,7 +21,7 @@ import {
 import Layout from './pages/Layout';
 
 const App = () => {
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+  // const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const [currentTab, setCurrentTab] = useState('home');
   return (
     <>
@@ -29,9 +29,9 @@ const App = () => {
       <Layout>
         <Sidebar currentTab={currentTab} setCurrentTab={setCurrentTab} />
         <main className='main p-5'>
-          <Routes>
+          {/* <Routes>
             <Route />
-          </Routes>
+          </Routes> */}
           {currentTab === 'home' && <Home />}
           {/* {currentTab === 'profile' && <Profile />} */}
           {currentTab === 'ads' && <Ads />}

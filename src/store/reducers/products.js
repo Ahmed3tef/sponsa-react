@@ -18,7 +18,7 @@ export const productsSlice = createSlice({
   initialState,
   extraReducers: {
     [loadProducts.pending]: (state, action) => {
-      state.subCategories = [];
+      state.products = [];
       state.isLoading = true;
       state.error = null;
     },
@@ -26,24 +26,25 @@ export const productsSlice = createSlice({
       // console.log(payload);
       if (payload) {
         if (payload.status === 0) {
-          state.subCategories = [];
+          state.products = [];
           state.isLoading = false;
           state.error = payload.message;
           return;
         }
         let data = payload.data.map((obj, i) => {
           return {
-            id: obj.id,
+            id: obj._id,
             position: 1 + i,
-            arabicName: obj.names.arabic,
-            englishName: obj.names.english,
+            // arabicName: obj.names.arabic,
+            // englishName: obj.names.english,
+            name: obj.names,
             imgUrl: obj.images[0].imageUrl,
             imgAlt: obj.alt,
             prices: obj.prices,
             // currentPrice: obj.prices[0].currentPrice,
             // discountPrice: obj.prices[0].discountPrice,
-            arabicDesc: obj.smallDescription.hintText.arabic,
-            englishDesc: obj.smallDescription.hintText.english,
+
+            hintText: obj.smallDescription.hintText,
 
             category: obj.catId,
             subcategory: obj.subcatId,
@@ -51,7 +52,7 @@ export const productsSlice = createSlice({
           };
         });
         console.log(data);
-        state.subCategories = data;
+        state.products = data;
         state.isLoading = false;
         state.error = null;
       }
@@ -59,7 +60,7 @@ export const productsSlice = createSlice({
     [loadProducts.rejected]: (state, action) => {
       // console.log(action);
       state.isLoading = false;
-      state.subCategories = null;
+      state.products = null;
       state.error = action.payload;
     },
   },

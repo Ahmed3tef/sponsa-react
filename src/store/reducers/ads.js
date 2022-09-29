@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { APIBase } from './api';
+
 import loadData from './loadData';
 
 const initialState = {

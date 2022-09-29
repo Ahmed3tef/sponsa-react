@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+
 import './selector.css';
 const Selector = props => {
   const categories = useSelector(state => state.categories.categories);

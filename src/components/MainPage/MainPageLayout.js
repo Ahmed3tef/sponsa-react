@@ -37,13 +37,13 @@ const MainPageLayout = props => {
     <>
       {!showAddPage && (
         <MainTablePage
+          path={props.path}
           title={props.title}
           setShowAddPage={setShowAddPage}
           showAddHandler={showAddHandler}
           setUpdatedPage={setUpdatedPage}
           updatedPage={updatedPage}
           data={props.data}
-          // pagination={false}
           addIcon={props.addIcon}
           image={props.image}
           arabicName={props.arabicName}
