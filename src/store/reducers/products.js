@@ -48,7 +48,7 @@ export const productsSlice = createSlice({
 
             category: obj.catId,
             subcategory: obj.subcatId,
-            size: obj.prices[0].size,
+            size: obj.prices.map(price => price.size),
           };
         });
         console.log(data);

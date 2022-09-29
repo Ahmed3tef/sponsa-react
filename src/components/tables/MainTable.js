@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { APIBase } from '../../store/reducers/api';
 import editIcon from '../../assets/Edit.svg';
 import deleteIcon from '../../assets/Delete.svg';
+import reviewsIcon from '../../assets/Product Reviews.svg';
+import editImgIcon from '../../assets/Product Details.svg';
 
 import axios from 'axios';
 import { loadAds } from '../../store/reducers/ads';
@@ -34,14 +36,14 @@ export default function MainTable(props) {
       {
         field: 'imgUrl',
         headerName: 'Photo',
-        width: 100,
+        width: 150,
         sortable: false,
 
         headerAlign: 'center',
         align: 'center',
         renderCell: params => {
           return (
-            <div className='t-img'>
+            <div className='p-img'>
               <img
                 src={`${APIBase}${params.row.imgUrl}`}
                 alt={params.row.imgAlt}
@@ -53,12 +55,17 @@ export default function MainTable(props) {
       {
         field: 'names',
         headerName: 'Title',
-        width: 110,
+        width: 120,
 
         headerAlign: 'center',
         align: 'center',
         renderCell: ({ row }) => {
-          return <p>{`${row.name.english} - ${row.name.arabic}`}</p>;
+          return (
+            <div>
+              <p>{`${row.name.english}`}</p>
+              <p>{`${row.name.arabic}`}</p>
+            </div>
+          );
         },
       },
       {
@@ -66,10 +73,13 @@ export default function MainTable(props) {
         headerName: 'Category',
         headerAlign: 'center',
         align: 'center',
-        width: 75,
+        width: 150,
         renderCell: ({ row }) => {
           return (
-            <p>{`${row.category.names.english} - ${row.category.names.arabic}`}</p>
+            <div>
+              <p>{`${row.category.names.english}`}</p>
+              <p>{`${row.category.names.arabic}`}</p>
+            </div>
           );
         },
       },
@@ -77,7 +87,7 @@ export default function MainTable(props) {
       {
         field: 'subcategory',
         headerName: 'Subcategory',
-        width: 100,
+        width: 150,
         headerAlign: 'center',
         align: 'center',
         renderCell: ({ row }) => {
@@ -85,25 +95,25 @@ export default function MainTable(props) {
         },
       },
       {
-        field: 'prices',
+        field: 'size',
         headerName: 'Weight or Size',
-        width: 65,
+        width: 150,
         headerAlign: 'center',
         align: 'center',
-        renderCell: ({ row }) => {
-          return (
-            <p>
-              {row.prices.map(price => {
-                return `${price.size}.`;
-              })}
-            </p>
-          );
-        },
+        // renderCell: ({ row }) => {
+        //   return (
+        //     <p>
+        //       {row.prices.map(price => {
+        //         return `${price.size}.`;
+        //       })}
+        //     </p>
+        //   );
+        // },
       },
       {
         field: 'prices',
         headerName: 'Price',
-        width: 65,
+        width: 120,
         headerAlign: 'center',
         align: 'center',
         renderCell: ({ row }) => {
@@ -133,13 +143,13 @@ export default function MainTable(props) {
         headerName: 'Hint Description',
         headerAlign: 'center',
         align: 'center',
-        width: 220,
+        width: 230,
         renderCell: ({ row }) => {
           return (
-            <>
-              <p>{`${row.hintText.english}`}</p>
-              <p>{`${row.hintText.arabic}`}</p>
-            </>
+            <div>
+              <p className='hint-text mb-4'>{`${row.hintText.english}`}</p>
+              <p className='hint-text'>{`${row.hintText.arabic}`}</p>
+            </div>
           );
         },
       },
@@ -153,25 +163,47 @@ export default function MainTable(props) {
         sortable: false,
         renderCell: params => {
           return (
-            <div className='e-d-icons'>
-              <img
-                src={editIcon}
-                alt='edit icon'
-                className='pe-4'
-                onClick={() => {
-                  props.setUpdatedPage(params.row);
+            <div>
+              <div className='e-d-icons mb-4'>
+                <img
+                  src={editIcon}
+                  alt='edit icon'
+                  className='pe-4'
+                  onClick={() => {
+                    props.setUpdatedPage(params.row);
 
-                  props.setShowAddAD(true);
-                }}
-              />
-              <img
-                src={deleteIcon}
-                alt='delete icon'
-                onClick={e => {
-                  axios.delete(`${APIBase}ads?id=${params.row.id}`, config);
-                  dispatch(loadAds());
-                }}
-              />
+                    props.setShowAddAD(true);
+                  }}
+                />
+                <img
+                  src={deleteIcon}
+                  alt='delete icon'
+                  onClick={e => {
+                    axios.delete(`${APIBase}ads?id=${params.row.id}`, config);
+                    dispatch(loadAds());
+                  }}
+                />
+              </div>
+              <div className='e-d-icons'>
+                <img
+                  src={editImgIcon}
+                  alt='edit icon'
+                  className='pe-4'
+                  onClick={() => {
+                    props.setUpdatedPage(params.row);
+
+                    props.setShowAddAD(true);
+                  }}
+                />
+                <img
+                  src={reviewsIcon}
+                  alt='delete icon'
+                  onClick={e => {
+                    axios.delete(`${APIBase}ads?id=${params.row.id}`, config);
+                    dispatch(loadAds());
+                  }}
+                />
+              </div>
             </div>
           );
         },
@@ -290,8 +322,8 @@ export default function MainTable(props) {
       <DataGrid
         rows={props.data}
         columns={cols}
-        pageSize={4}
-        rowsPerPageOptions={[5]}
+        pageSize={6}
+        rowsPerPageOptions={[7]}
         disableSelectionOnClick={true}
         experimentalFeatures={{ newEditingApi: true }}
       />
