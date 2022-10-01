@@ -19,10 +19,10 @@
 
   --shadow-login: 5px 5px 6px #6a6768;
   --shadow-sidebar-nav-inner: 0px 3px 6px var(--color-shadow-checkbox);
-  --shadow-table-row: 3px 3px 6px rgba(0, 0, 0, 0.16);
+  --shadow-sidebar-img: 7px 4px 6px var(--color-shadow-checkbox);
+  --shadow-table-row: 3px 3px 6px var(--color-shadow-checkbox);
   --shadow-table-thead: 0px 3px 6px var(--color-shadow-thead);
   --shadow-btn-form: 5px 5px 6px var(--color-btn-shadow);
-
   --shadow-sidebar-nav-out: 5px 3px 6px var(--color-shadow-checkbox);
 }
 
