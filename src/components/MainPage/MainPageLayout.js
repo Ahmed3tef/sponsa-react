@@ -15,7 +15,7 @@ import {
 const MainPageLayout = props => {
   const [showAddPage, setShowAddPage] = useState(false);
   const [updatedPage, setUpdatedPage] = useState(null);
-  // const [upObject, setUpObject] = useState(null);
+  const [showDeleteForm, setShowDeleteForm] = useState();
 
   const dispatch = useDispatch();
 
@@ -52,7 +52,9 @@ const MainPageLayout = props => {
           englishDesc={props.englishDesc}
         />
       )}
-
+      <div className='delete-overlay'>
+        <div></div>
+      </div>
       {showAddPage && (
         <Container className='h-100'>
           <div className='back-icon ' onClick={goBackHandler}>

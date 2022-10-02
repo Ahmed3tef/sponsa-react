@@ -216,7 +216,7 @@ export default function MainTable(props) {
       {
         field: 'userInfo',
         headerName: `Customer Info بيانات العميل`,
-        width: 160,
+        width: 135,
         headerAlign: 'center',
         align: 'center',
         renderHeader: params => {
@@ -399,7 +399,7 @@ export default function MainTable(props) {
       {
         field: 'orderStatus',
         headerName: 'orderStatus',
-        width: 80,
+        width: 100,
 
         headerAlign: 'center',
         align: 'center',
@@ -431,7 +431,7 @@ export default function MainTable(props) {
       {
         field: 'notes',
         headerName: 'notes',
-        width: 100,
+        width: 120,
 
         headerAlign: 'center',
         align: 'center',
