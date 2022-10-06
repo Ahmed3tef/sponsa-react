@@ -10,6 +10,8 @@ const Ads = () => {
   return (
     <MainPageLayout
       path='ads'
+      deleteTitle='ad'
+      route='ads'
       data={ads}
       action={loadAds()}
       title='Active ADs'

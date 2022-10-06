@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const loadAdmin = createAsyncThunk('user/loadAdmin', thunkAPI =>
-  loadData(thunkAPI, 'product')
+  loadData(thunkAPI, 'admin')
 );
 
 export const adminSlice = createSlice({
@@ -30,24 +30,13 @@ export const adminSlice = createSlice({
           state.error = payload.message;
           return;
         }
-        let data = payload.data.map((obj, i) => {
+        let data = payload.data.map(obj => {
           return {
             id: obj._id,
-            position: 1 + i,
-            // arabicName: obj.names.arabic,
-            // englishName: obj.names.english,
-            name: obj.names,
-            imgUrl: obj.images[0].imageUrl,
-            imgAlt: obj.alt,
-            prices: obj.prices,
-            // currentPrice: obj.prices[0].currentPrice,
-            // discountPrice: obj.prices[0].discountPrice,
-
-            hintText: obj.smallDescription.hintText,
-
-            category: obj.catId,
-            subcategory: obj.subcatId,
-            size: obj.prices.map(price => price.size),
+            name: obj.name,
+            phone: obj.phone,
+            imgUrl: obj.imageUrl,
+            email: obj.email,
           };
         });
         console.log(data);

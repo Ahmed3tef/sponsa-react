@@ -43,7 +43,7 @@ export const subCategoriesSlice = createSlice({
             position: i + 1,
           };
         });
-        console.log(data);
+   
         state.subCategories = data;
         state.isLoading = false;
         state.error = null;

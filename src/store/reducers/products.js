@@ -51,7 +51,7 @@ export const productsSlice = createSlice({
             size: obj.prices.map(price => price.size),
           };
         });
-        console.log(data);
+
         state.products = data;
         state.isLoading = false;
         state.error = null;

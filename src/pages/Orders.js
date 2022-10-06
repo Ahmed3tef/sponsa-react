@@ -8,7 +8,9 @@ const Orders = () => {
   return (
     <MainPageLayout
       path='orders'
+      route='order'
       data={orders}
+      deleteTitle='Order'
       action={loadOrders()}
       title='Active Orders'
     />

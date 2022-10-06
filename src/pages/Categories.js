@@ -9,6 +9,8 @@ const Categories = () => {
   return (
     <MainPageLayout
       path='categories'
+      deleteTitle='category'
+      route='cat'
       data={categories}
       action={loadCategories()}
       title='Active Categories'

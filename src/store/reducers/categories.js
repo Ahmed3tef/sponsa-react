@@ -33,11 +33,11 @@ export const categoriesSlice = createSlice({
         }
         let data = payload.data.map((obj, i) => {
           return {
+            id: obj.id,
             englishName: obj.names.english,
             arabicName: obj.names.arabic,
             imgUrl: obj.image.imageUrl,
             imgAlt: obj.image.alt,
-            id: obj.id,
             createdAt: obj.createdAt,
             updatedAt: obj.updatedAt,
             position: 1 + i,

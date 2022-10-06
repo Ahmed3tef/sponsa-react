@@ -13,14 +13,14 @@ import acceptOrderIcon from '../../assets/Accept Order.svg';
 import rejectOrderIcon from '../../assets/Reject Order.svg';
 
 import axios from 'axios';
-import { loadAds } from '../../store/reducers/ads';
-export default function MainTable(props) {
+
+const MainTable = props => {
   const dispatch = useDispatch();
+
   // console.log(props);
   const config = {
     headers: {
-      authorization:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiMSIsInVzZXJJZCI6IjYzMTBhNzgwOThhY2M1NWFiOTNjY2JmOSIsInN0YXR1cyI6MSwiaWF0IjoxNjYzMjUyMTU3LCJleHAiOjE2NjU4NDQxNTd9.A8f2G4eFcJLS_clm_4ubdb8hxrNwfOhlaT7jyi_Bhjo',
+      authorization: props.token,
     },
   };
 
@@ -38,7 +38,7 @@ export default function MainTable(props) {
       {
         field: 'imgUrl',
         headerName: 'Photo',
-        width: 150,
+        width: 130,
         sortable: false,
 
         headerAlign: 'center',
@@ -180,9 +180,9 @@ export default function MainTable(props) {
                 <img
                   src={deleteIcon}
                   alt='delete icon'
-                  onClick={e => {
-                    axios.delete(`${APIBase}ads?id=${params.row.id}`, config);
-                    dispatch(loadAds());
+                  onClick={() => {
+                    props.setOverlay(true);
+                    props.setItemId(params.row.id);
                   }}
                 />
               </div>
@@ -197,14 +197,7 @@ export default function MainTable(props) {
                     props.setShowAddAD(true);
                   }}
                 />
-                <img
-                  src={reviewsIcon}
-                  alt='delete icon'
-                  onClick={e => {
-                    axios.delete(`${APIBase}ads?id=${params.row.id}`, config);
-                    dispatch(loadAds());
-                  }}
-                />
+                <img src={reviewsIcon} alt='reviews icon' />
               </div>
             </div>
           );
@@ -481,7 +474,7 @@ export default function MainTable(props) {
                 alt='delete icon'
                 onClick={e => {
                   axios.delete(`${APIBase}ads?id=${params.row.id}`, config);
-                  dispatch(loadAds());
+                  // dispatch(loadAds());
                 }}
               />
             </div>
@@ -573,9 +566,9 @@ export default function MainTable(props) {
               <img
                 src={deleteIcon}
                 alt='delete icon'
-                onClick={e => {
-                  axios.delete(`${APIBase}ads?id=${params.row.id}`, config);
-                  dispatch(loadAds());
+                onClick={() => {
+                  props.setOverlay(true);
+                  props.setItemId(params.row.id);
                 }}
               />
             </div>
@@ -609,4 +602,6 @@ export default function MainTable(props) {
       />
     </Box>
   );
-}
+};
+
+export default MainTable;

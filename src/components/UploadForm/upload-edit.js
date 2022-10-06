@@ -23,7 +23,7 @@ export default function uploadAndEdit(
     toast.promise(updatePromise, {
       pending: `Updating your ${msg} 
           please wait a second`,
-      success: `${msg} uploaded successfully 👌`,
+      success: `${msg} updated successfully 👌`,
       error: 'Update failed! ⛔',
     });
     return;

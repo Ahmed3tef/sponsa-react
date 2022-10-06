@@ -12,5 +12,4 @@ export const sidebarData = [
   { title: 'Products', icon: <HiHome />, tab: 'products' },
   { title: 'Orders', icon: <HiHome />, tab: 'orders' },
   { title: 'Reports', icon: <HiHome />, tab: 'reports' },
-  { title: 'Logout', icon: <HiHome />, tab: 'logout' },
 ];

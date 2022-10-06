@@ -3,8 +3,12 @@ import { sidebarData } from './sidebarData';
 import './Sidebar.css';
 import profileImg from '../../assets/Photo.png';
 import menuBar from '../../assets/burgerIcon.svg';
+import { FaPowerOff } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../store/reducers/auth';
 const Sidebar = props => {
   const [showSidebar, setShowSidebar] = useState(true);
+  const dispatch = useDispatch();
   const toggleSidebarHandler = () => {
     setShowSidebar(!showSidebar);
   };
@@ -13,6 +17,9 @@ const Sidebar = props => {
 
   const navLinkClickHandler = path => {
     props.setCurrentTab(path);
+  };
+  const logoutHandler = () => {
+    dispatch(logout());
   };
 
   return (
@@ -39,6 +46,17 @@ const Sidebar = props => {
               <div className='sidebar__caption'>{bar.title}</div>
             </div>
           ))}
+          <div
+            className={`sidebar__link ${
+              props.currentTab === 'logout' ? 'active' : ''
+            }`}
+            onClick={logoutHandler}>
+            <div className='sidebar__icon'>
+              <FaPowerOff />
+            </div>
+
+            <div className='sidebar__caption'>Logout</div>
+          </div>
         </div>
 
         {/* {showSidebar && (

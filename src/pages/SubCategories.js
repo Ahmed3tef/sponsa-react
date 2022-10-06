@@ -11,6 +11,8 @@ const SubCategories = () => {
     <MainPageLayout
       path='subCategories'
       data={subCategories}
+      route='subcat'
+      deleteTitle='subCategory'
       action={loadSubCategories()}
       title='Active SubCategories'
       addIcon={addIcon}

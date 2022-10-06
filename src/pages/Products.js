@@ -12,6 +12,8 @@ const Products = () => {
     <MainPageLayout
       path='products'
       data={products}
+      route='product'
+      deleteTitle='product'
       action={loadProducts()}
       title='Active Products'
       addIcon={addIcon}

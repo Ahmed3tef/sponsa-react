@@ -61,7 +61,6 @@ export const ordersSlice = createSlice({
             orderStatus: obj.orderStatus,
           };
         });
-        console.log(data);
         state.orders = data;
         state.isLoading = false;
         state.error = null;

@@ -19,6 +19,7 @@ const MainTablePage = props => {
         </div>
       </div>
       <MainTable
+        token={props.token}
         path={props.path}
         data={props.data}
         updatedPage={props.updatedPage}
@@ -29,6 +30,8 @@ const MainTablePage = props => {
         arabicName={props.arabicName}
         arabicDesc={props.arabicDesc}
         englishDesc={props.englishDesc}
+        setItemId={props.setItemId}
+        setOverlay={props.setOverlay}
       />
     </Container>
   );

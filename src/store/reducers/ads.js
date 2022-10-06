@@ -30,7 +30,7 @@ export const adsSlice = createSlice({
           state.error = payload.message;
           return;
         }
-        let adsData = payload.data.map((obj, i) => {
+        let data = payload.data.map((obj, i) => {
           return {
             id: obj.id,
             englishName: obj.names.english,
@@ -43,13 +43,12 @@ export const adsSlice = createSlice({
           };
         });
 
-        state.ads = adsData;
+        state.ads = data;
         state.isLoading = false;
         state.error = null;
       }
     },
     [loadAds.rejected]: (state, action) => {
-      // console.log(action);
       state.isLoading = false;
       state.ads = null;
       state.error = action.payload;
