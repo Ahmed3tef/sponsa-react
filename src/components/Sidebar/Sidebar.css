@@ -7,7 +7,9 @@
   align-items: center;
   flex-direction: column;
   border-radius: 10rem 0 0 10rem;
-  position: relative;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
 
 .sidebar__link {
