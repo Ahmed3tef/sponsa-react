@@ -16,6 +16,7 @@ import {
   Products,
   Reports,
   Orders,
+  Profile,
 } from './pages';
 
 import Layout from './pages/Layout';
@@ -36,6 +37,7 @@ const App = () => {
             {currentTab === 'home' && <Home />}
             {/* {currentTab === 'profile' && <Profile />} */}
             {currentTab === 'ads' && <Ads />}
+            {currentTab === 'profile' && <Profile />}
             {currentTab === 'categories' && <Categories />}
             {currentTab === 'subcategories' && <SubCategories />}
             {currentTab === 'products' && <Products />}

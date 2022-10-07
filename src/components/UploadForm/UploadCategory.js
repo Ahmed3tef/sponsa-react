@@ -5,7 +5,7 @@ import MiniText from './MiniText';
 import { APIBase } from '../../store/reducers/api';
 import uploadAndEdit from './upload-edit';
 
-const UploadCategory = ({ updatedPage, goBackHandler }) => {
+const UploadCategory = ({ updatedPage, goBackHandler, token }) => {
   const [arabicName, setArabicName] = useState(
     updatedPage ? updatedPage.arabicName : ''
   );
@@ -16,7 +16,7 @@ const UploadCategory = ({ updatedPage, goBackHandler }) => {
     updatedPage ? APIBase + updatedPage.imgUrl : ''
   );
   const [imgAlt, setImgAlt] = useState(updatedPage ? updatedPage.imgAlt : '');
-  console.log(updatedPage);
+  
   const uploadADHandler = () => {
     const fd = new FormData();
     fd.append('image', img);
@@ -26,9 +26,9 @@ const UploadCategory = ({ updatedPage, goBackHandler }) => {
 
     const config = {
       headers: {
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiMSIsInVzZXJJZCI6IjYzMjc0ZjUwNmFjNTAwOTE4ZDFhMTA1MCIsInN0YXR1cyI6MSwiaWF0IjoxNjYzOTgwNDM5LCJleHAiOjE2NjY1NzI0Mzl9.Iqfmp-AnQ03Km85vyiYM5PCLZFuktUGDXZwymps5xrA',
+        authorization: token,
       },
+      params:{id:updatedPage.id},
     };
     uploadAndEdit(updatedPage, 'cat', fd, config, goBackHandler, 'Category');
   };

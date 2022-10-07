@@ -7,6 +7,16 @@
   border: 3px solid var(--color-main-darker);
   cursor: pointer;
 }
+.profile-preview {
+  height: 30rem;
+  width: 30rem;
+  overflow: hidden;
+  border-radius: 2rem;
+  border: 3px solid var(--color-main-darker);
+  cursor: pointer;
+  box-shadow: inset var(--shadow-sidebar-nav-inner),
+    var(--shadow-sidebar-nav-inner);
+}
 .image-container {
   display: flex;
   justify-content: center;
@@ -14,7 +24,8 @@
   width: 100%;
   height: 100%;
 }
-.preview .imgHeight {
+.preview .imgHeight,
+.profile-preview .imgHeight {
   height: 100%;
   width: 100%;
   object-fit: contain;
@@ -39,6 +50,21 @@
   align-items: center;
   justify-content: center;
   height: 100%;
+}
+.profile-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+.profile-input {
+  width: 70%;
+}
+.profile-img {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .input-container {
   width: 100%;

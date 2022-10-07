@@ -4,12 +4,11 @@ import './UploadForm.css';
 import MiniText from './MiniText';
 import LargeText from './LargeText';
 
-import axios from 'axios';
 import { APIBase } from '../../store/reducers/api';
-import { toast } from 'react-toastify';
+
 import uploadAndEdit from './upload-edit';
 
-const UploadForm = ({ updatedPage, goBackHandler }) => {
+const UploadAds = ({ updatedPage, goBackHandler, token }) => {
   const [arabicName, setArabicName] = useState(
     updatedPage ? updatedPage.arabicName : ''
   );
@@ -26,7 +25,6 @@ const UploadForm = ({ updatedPage, goBackHandler }) => {
     updatedPage ? APIBase + updatedPage.imgUrl : ''
   );
   const [imgAlt, setImgAlt] = useState(updatedPage ? updatedPage.imgAlt : '');
-  console.log(updatedPage);
 
   const uploadADHandler = () => {
     const fd = new FormData();
@@ -38,9 +36,9 @@ const UploadForm = ({ updatedPage, goBackHandler }) => {
     fd.append('englishDesc', englishDesc);
     const config = {
       headers: {
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiMSIsInVzZXJJZCI6IjYzMjc0ZjUwNmFjNTAwOTE4ZDFhMTA1MCIsInN0YXR1cyI6MSwiaWF0IjoxNjYzOTgwNDM5LCJleHAiOjE2NjY1NzI0Mzl9.Iqfmp-AnQ03Km85vyiYM5PCLZFuktUGDXZwymps5xrA',
+        authorization: token,
       },
+      params: { id: updatedPage.id },
     };
     uploadAndEdit(updatedPage, 'ads', fd, config, goBackHandler, 'AD');
   };
@@ -95,4 +93,4 @@ const UploadForm = ({ updatedPage, goBackHandler }) => {
   );
 };
 
-export default UploadForm;
+export default UploadAds;

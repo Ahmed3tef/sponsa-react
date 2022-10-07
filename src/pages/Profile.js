@@ -1,9 +1,8 @@
-import React from 'react'
+import React from 'react';
+import UploadProfile from '../components/UploadForm/UploadProfile';
 
 const Profile = () => {
-  return (
-    <div>Profile</div>
-  )
-}
+  return <UploadProfile />;
+};
 
 export default Profile;

@@ -11,10 +11,8 @@ export default function uploadAndEdit(
   msg
 ) {
   if (updatedPage) {
-    // console.log(updatedAD);
-
     const updatePromise = axios
-      .patch(`${APIBase}${route}/update?id=${updatedPage.id}`, fd, config)
+      .patch(`${APIBase}${route}/update`, fd, config)
       .then(res => {
         console.log(res);
         goBackHandler();

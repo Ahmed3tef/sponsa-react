@@ -30,14 +30,16 @@ const UploadImg = props => {
 
   return (
     <div className='img-uploader'>
-      <div className='input-label'>
-        <p>{props.title[0]}</p>
-        <p> {props.title[1]}</p>
-      </div>
+      {props.title && (
+        <div className='input-label'>
+          <p>{props.title[0]}</p>
+          <p> {props.title[1]}</p>
+        </div>
+      )}
       <div className='upload-card'>
         <div
           id='preview'
-          className='preview'
+          className={props.profile ? 'profile-preview' : 'preview'}
           onClick={() => fileImgInput.current && fileImgInput.current.click()}>
           <div className='image-container'>
             {/* <img src={preview} alt='prev' /> */}

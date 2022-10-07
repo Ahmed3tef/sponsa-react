@@ -8,7 +8,7 @@ const MiniText = props => {
       </div>
       <input
         style={{ direction: props.direction ? 'rtl' : 'ltr' }}
-        type='text'
+        type={props.type || 'text'}
         placeholder={props.placeholder}
         value={props.name}
         onChange={event => {

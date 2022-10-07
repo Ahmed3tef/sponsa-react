@@ -8,7 +8,7 @@ import Selector from './Selector';
 import { loadCategories } from '../../store/reducers/categories';
 import { useDispatch } from 'react-redux';
 
-const UploadSubCategory = ({ updatedPage, goBackHandler }) => {
+const UploadSubCategory = ({ updatedPage, goBackHandler, token }) => {
   const [arabicName, setArabicName] = useState(
     updatedPage ? updatedPage.arabicName : ''
   );
@@ -39,10 +39,10 @@ const UploadSubCategory = ({ updatedPage, goBackHandler }) => {
 
     const config = {
       headers: {
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiMSIsInVzZXJJZCI6IjYzMjc0ZjUwNmFjNTAwOTE4ZDFhMTA1MCIsInN0YXR1cyI6MSwiaWF0IjoxNjYzOTgwNDM5LCJleHAiOjE2NjY1NzI0Mzl9.Iqfmp-AnQ03Km85vyiYM5PCLZFuktUGDXZwymps5xrA',
+        authorization: token,
         id: catId,
       },
+      params: { id: updatedPage.id },
     };
     uploadAndEdit(
       updatedPage,

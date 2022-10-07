@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import {
   MainTablePage,
+  UploadAds,
   UploadCategory,
-  UploadForm,
   UploadSubCategory,
 } from '..';
 import axios from 'axios';
@@ -100,19 +100,22 @@ const MainPageLayout = props => {
             <img src={backIcon} alt='back icon' />
           </div>
           {props.path === 'ads' && (
-            <UploadForm
+            <UploadAds
+              token={token}
               updatedPage={updatedPage}
               goBackHandler={goBackHandler}
             />
           )}
           {props.path === 'categories' && (
             <UploadCategory
+              token={token}
               updatedPage={updatedPage}
               goBackHandler={goBackHandler}
             />
           )}
           {props.path === 'subCategories' && (
             <UploadSubCategory
+              token={token}
               updatedPage={updatedPage}
               goBackHandler={goBackHandler}
             />
