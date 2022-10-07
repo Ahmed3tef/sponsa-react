@@ -209,7 +209,7 @@ const MainTable = props => {
       {
         field: 'userInfo',
         headerName: `Customer Info بيانات العميل`,
-        width: 140,
+        width: 135,
         headerAlign: 'center',
         align: 'center',
         renderHeader: params => {
@@ -392,7 +392,7 @@ const MainTable = props => {
       {
         field: 'orderStatus',
         headerName: 'orderStatus',
-        width: 110,
+        width: 100,
 
         headerAlign: 'center',
         align: 'center',
@@ -424,7 +424,7 @@ const MainTable = props => {
       {
         field: 'notes',
         headerName: 'notes',
-        width: 100,
+        width: 120,
 
         headerAlign: 'center',
         align: 'center',
