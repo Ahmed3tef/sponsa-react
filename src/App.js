@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
@@ -24,6 +24,14 @@ import Layout from './pages/Layout';
 const App = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const [currentTab, setCurrentTab] = useState('home');
+  const token = useSelector(state => state.auth.token);
+
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     localStorage.setItem('token', token);
+  //   }
+  // }, [isLoggedIn, token]);
+
   return (
     <>
       {!isLoggedIn && <Login />}
@@ -35,7 +43,7 @@ const App = () => {
             <Route />
           </Routes> */}
             {currentTab === 'home' && <Home />}
-            {/* {currentTab === 'profile' && <Profile />} */}
+
             {currentTab === 'ads' && <Ads />}
             {currentTab === 'profile' && <Profile />}
             {currentTab === 'categories' && <Categories />}

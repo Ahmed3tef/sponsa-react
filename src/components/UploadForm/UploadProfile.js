@@ -4,19 +4,19 @@ import { loadAdmin } from '../../store/reducers/admin';
 import UploadImg from './UploadImg';
 
 const UploadProfile = () => {
+  const adminData = useSelector(state => state.admin.admin);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadAdmin());
   }, []);
-
-  const adminData = useSelector(state => state.adminData.admin);
+  console.log(adminData);
 
   return (
     <div className='profile-container'>
       <div className='profile-img'>
         <UploadImg />
       </div>
-      <div className='profile-input'>
+      {/* <div className='profile-input'>
         <MiniText
           placeholder='Enter name here ...'
           label='Name'
@@ -44,7 +44,7 @@ const UploadProfile = () => {
           setName={setArabicName}
           name={arabicName}
         />
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -596,7 +596,7 @@ const MainTable = props => {
         rows={props.data}
         columns={cols}
         pageSize={6}
-        rowsPerPageOptions={[7]}
+        rowsPerPageOptions={[6]}
         disableSelectionOnClick={true}
         experimentalFeatures={{ newEditingApi: true }}
       />

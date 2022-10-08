@@ -14,7 +14,7 @@ export const store = configureStore({
   reducer: {
     auth: authSlice,
     ads: adsSlice,
-    adminData: adminSlice,
+    admin: adminSlice,
     categories: categoriesSlice,
     subCategories: subCategoriesSlice,
     products: productsSlice,

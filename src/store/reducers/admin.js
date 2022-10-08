@@ -8,7 +8,7 @@ const initialState = {
   error: null,
 };
 
-export const loadAdmin = createAsyncThunk('user/loadAdmin', thunkAPI =>
+export const loadAdmin = createAsyncThunk('admin/loadAdmin', thunkAPI =>
   loadData(thunkAPI, 'admin')
 );
 
@@ -22,7 +22,7 @@ export const adminSlice = createSlice({
       state.error = null;
     },
     [loadAdmin.fulfilled]: (state, { payload }) => {
-      // console.log(payload);
+      let data;
       if (payload) {
         if (payload.status === 0) {
           state.admin = [];
@@ -30,27 +30,26 @@ export const adminSlice = createSlice({
           state.error = payload.message;
           return;
         }
-        let data = payload.data.map(obj => {
-          return {
-            id: obj._id,
-            name: obj.name,
-            phone: obj.phone,
-            imgUrl: obj.imageUrl,
-            email: obj.email,
-          };
-        });
-        console.log(data);
-        state.admin = data;
-        state.isLoading = false;
-        state.error = null;
+        const { _id: id, name, phone, imageUrl, email } = payload.data;
+        data = {
+          id,
+          name,
+          phone,
+          imageUrl,
+          email,
+        };
       }
-    },
-    [loadAdmin.rejected]: (state, action) => {
-      // console.log(action);
+
+      state.admin = data;
       state.isLoading = false;
-      state.admin = null;
-      state.error = action.payload;
+      state.error = null;
     },
+  },
+  [loadAdmin.rejected]: (state, action) => {
+    // console.log(action);
+    state.isLoading = false;
+    state.admin = null;
+    state.error = action.payload;
   },
 });
 
