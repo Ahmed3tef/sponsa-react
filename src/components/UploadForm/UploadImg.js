@@ -18,8 +18,10 @@ const UploadImg = props => {
       setPreview(window.URL.createObjectURL(e.target.files[0]));
       console.log(e.target.files[0]);
       console.log(e.target.files[0].name.replace(/\.[^/.]+$/, ''));
-      props.setImgAlt(e.target.files[0].name.replace(/\.[^/.]+$/, ''));
-      props.setImg(e.target.files[0]);
+      if (props.setImgAlt && props.setImg) {
+        props.setImgAlt(e.target.files[0].name.replace(/\.[^/.]+$/, ''));
+        props.setImg(e.target.files[0]);
+      }
       return;
     }
   };
@@ -29,7 +31,10 @@ const UploadImg = props => {
   // }, [imgAlt, file]);
 
   return (
-    <div className='img-uploader'>
+    <div
+      className={`${props.classes} ${
+        props.profile ? 'img-uploader-profile' : 'img-uploader'
+      }`}>
       {props.title && (
         <div className='input-label'>
           <p>{props.title[0]}</p>

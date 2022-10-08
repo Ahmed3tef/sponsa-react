@@ -43,7 +43,10 @@
   width: 77rem;
   margin: 1rem 0 5rem -11rem;
 }
-
+.img-uploader-profile {
+  display: flex;
+  align-items: center;
+}
 .form-container {
   display: flex;
   flex-direction: column;

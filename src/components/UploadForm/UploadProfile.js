@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadAdmin } from '../../store/reducers/admin';
+import MiniText from './MiniText';
 import UploadImg from './UploadImg';
 
 const UploadProfile = () => {
+  const [name, setName] = useState('asdasd');
   const adminData = useSelector(state => state.admin.admin);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -14,37 +16,27 @@ const UploadProfile = () => {
   return (
     <div className='profile-container'>
       <div className='profile-img'>
-        <UploadImg />
+        <UploadImg profile={true} />
       </div>
-      {/* <div className='profile-input'>
+      <div className='profile-input'>
         <MiniText
           placeholder='Enter name here ...'
           label='Name'
           setName={setName}
           name={name}
         />
-        <MiniText
-          type='email'
-          placeholder='Enter name here ...'
-          label='Name'
-          setName={setName}
-          name={name}
-        />
+
         <MiniText
           type='password'
           placeholder='Enter password here ...'
           label='Password'
-          setName={setArabicName}
-          name={arabicName}
         />
         <MiniText
           type='password'
-          placeholder='Enter password here ...'
+          placeholder='Re Enter password here ...'
           label='Confirm Password'
-          setName={setArabicName}
-          name={arabicName}
         />
-      </div> */}
+      </div>
     </div>
   );
 };
