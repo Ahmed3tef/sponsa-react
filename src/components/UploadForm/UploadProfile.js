@@ -55,7 +55,6 @@ const UploadProfile = () => {
           name={phone}
         />
         <MiniText
-          classes='mb-5'
           type='password'
           placeholder='Enter password here ...'
           label='Password'

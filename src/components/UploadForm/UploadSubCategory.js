@@ -6,9 +6,10 @@ import { APIBase } from '../../store/reducers/api';
 import uploadAndEdit from './upload-edit';
 import Selector from './Selector';
 import { loadCategories } from '../../store/reducers/categories';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const UploadSubCategory = ({ updatedPage, goBackHandler, token }) => {
+  const categories = useSelector(state => state.categories.categories);
   const [arabicName, setArabicName] = useState(
     updatedPage ? updatedPage.arabicName : ''
   );
@@ -89,6 +90,7 @@ const UploadSubCategory = ({ updatedPage, goBackHandler, token }) => {
           }
           catId={catId}
           setCatId={setCatId}
+          data={categories}
         />
       </div>
       <div className='form-btns mt-5'>

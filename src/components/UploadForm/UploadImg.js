@@ -29,12 +29,24 @@ const UploadImg = props => {
   //   props.setImgAlt(imgAlt);
   //   props.setImg(file);
   // }, [imgAlt, file]);
+  let uploaderClass, previewClass;
+  if (props.profile) {
+    uploaderClass = 'img-uploader-profile';
+    previewClass = 'profile-preview';
+  }
+  if (props.product) {
+    uploaderClass = 'img-uploader-product';
+    previewClass = 'product-preview';
+  } else {
+    uploaderClass = 'img-uploader';
+    previewClass = 'preview';
+  }
+  if (props.classes) {
+    uploaderClass += props.classes;
+  }
 
   return (
-    <div
-      className={`${props.classes} ${
-        props.profile ? 'img-uploader-profile' : 'img-uploader'
-      }`}>
+    <div className={uploaderClass}>
       {props.title && (
         <div className='input-label'>
           <p>{props.title[0]}</p>
@@ -44,7 +56,7 @@ const UploadImg = props => {
       <div className='upload-card'>
         <div
           id='preview'
-          className={props.profile ? 'profile-preview' : 'preview'}
+          className={previewClass}
           onClick={() => fileImgInput.current && fileImgInput.current.click()}>
           <div className='image-container'>
             {/* <img src={preview} alt='prev' /> */}

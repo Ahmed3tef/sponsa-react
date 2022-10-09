@@ -1,13 +1,23 @@
 import React from 'react';
 
 const MiniText = props => {
+  let direction;
+  if (props.path === 'product') {
+    // دا عشان ميحودش يمين غير ف البردوكت بس
+    direction = props.direction;
+  }
   return (
-    <div className='input-container input-text-mini'>
-      <div className='input-label'>
-        <p>{props.label}</p>
-      </div>
+    <div
+      className={`${props.classes} input-container input-text-mini`}
+      style={{ direction: direction }}>
+      {props.label && (
+        <div className='input-label'>
+          <p>{props.label}</p>
+        </div>
+      )}
+      {props.btn && <div className='form-btn'>{props.btn}</div>}
       <input
-        style={{ direction: props.direction ? 'rtl' : 'ltr' }}
+        style={{ direction: props.direction ? props.direction : 'ltr' }}
         type={props.type || 'text'}
         placeholder={props.placeholder}
         value={props.name}

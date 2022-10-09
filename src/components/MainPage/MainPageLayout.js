@@ -9,6 +9,7 @@ import {
   MainTablePage,
   UploadAds,
   UploadCategory,
+  UploadProduct,
   UploadSubCategory,
 } from '..';
 import axios from 'axios';
@@ -24,7 +25,6 @@ const MainPageLayout = props => {
 
   const showAddHandler = () => {
     setUpdatedPage(null);
-
     setShowAddPage(true);
   };
   const goBackHandler = () => {
@@ -115,6 +115,13 @@ const MainPageLayout = props => {
           )}
           {props.path === 'subCategories' && (
             <UploadSubCategory
+              token={token}
+              updatedPage={updatedPage}
+              goBackHandler={goBackHandler}
+            />
+          )}
+          {props.path === 'products' && (
+            <UploadProduct
               token={token}
               updatedPage={updatedPage}
               goBackHandler={goBackHandler}

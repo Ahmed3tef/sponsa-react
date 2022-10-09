@@ -2,10 +2,13 @@ import React from 'react';
 
 const LargeText = props => {
   return (
-    <div className='input-container input-text-large'>
-      <div className='input-label'>
-        <p>{props.label}</p>
-      </div>
+    <div className={`input-container input-text-large ${props.classes}`}>
+      {props.label && (
+        <div className='input-label'>
+          <p>{props.label}</p>
+        </div>
+      )}
+      {props.btn && <div className='form-btn'>{props.btn}</div>}
       <textarea
         placeholder={props.placeholder}
         value={props.desc}

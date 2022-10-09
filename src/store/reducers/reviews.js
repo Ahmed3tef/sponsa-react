@@ -3,31 +3,28 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import loadData from './loadData';
 
 const initialState = {
-  products: [],
-  isLoading: false,
+  reviews: [],
+
   error: null,
 };
 
-export const loadProducts = createAsyncThunk(
-  'products/loadProducts',
-  thunkAPI => loadData(thunkAPI, 'product')
+export const loadReviews = createAsyncThunk('reviews/loadReviews', thunkAPI =>
+  loadData(thunkAPI, 'product/review')
 );
 
-export const productsSlice = createSlice({
-  name: 'products',
+export const reviewsSlice = createSlice({
+  name: 'reviews',
   initialState,
   extraReducers: {
-    [loadProducts.pending]: (state, action) => {
-      state.products = [];
-      state.isLoading = true;
+    [loadReviews.pending]: (state, action) => {
+      state.reviews = [];
       state.error = null;
     },
-    [loadProducts.fulfilled]: (state, { payload }) => {
+    [loadReviews.fulfilled]: (state, { payload }) => {
       // console.log(payload);
       if (payload) {
         if (payload.status === 0) {
-          state.products = [];
-          state.isLoading = false;
+          state.reviews = [];
           state.error = payload.message;
           return;
         }
@@ -40,7 +37,6 @@ export const productsSlice = createSlice({
             name: obj.names,
             imgUrl: obj.images[0].imageUrl,
             imgAlt: obj.alt,
-            images: obj.images,
             prices: obj.prices,
             // currentPrice: obj.prices[0].currentPrice,
             // discountPrice: obj.prices[0].discountPrice,
@@ -52,21 +48,19 @@ export const productsSlice = createSlice({
             size: obj.prices.map(price => price.size),
           };
         });
-
-        state.products = data;
-        state.isLoading = false;
+        console.log(data);
+        state.reviews = data;
         state.error = null;
       }
     },
-    [loadProducts.rejected]: (state, action) => {
+    [loadReviews.rejected]: (state, action) => {
       // console.log(action);
-      state.isLoading = false;
-      state.products = null;
+      state.reviews = null;
       state.error = action.payload;
     },
   },
 });
 
-export const getProducts = state => state.products;
+export const getReviews = state => state.reviews;
 
-export default productsSlice.reducer;
+export default reviewsSlice.reducer;
