@@ -12,9 +12,7 @@ const MiniText = props => {
         placeholder={props.placeholder}
         value={props.name}
         onChange={event => {
-          if (props.setName) {
-            props.setName(event.target.value);
-          }
+          props.setName(event.target.value);
         }}
       />
     </div>

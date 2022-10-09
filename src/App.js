@@ -26,11 +26,11 @@ const App = () => {
   const [currentTab, setCurrentTab] = useState('home');
   const token = useSelector(state => state.auth.token);
 
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     localStorage.setItem('token', token);
-  //   }
-  // }, [isLoggedIn, token]);
+  useEffect(() => {
+    if (isLoggedIn) {
+      localStorage.setItem('token', token);
+    }
+  }, [isLoggedIn, token]);
 
   return (
     <>

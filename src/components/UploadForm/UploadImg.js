@@ -16,11 +16,11 @@ const UploadImg = props => {
     if (e.target.files[0]) {
       setImgFile(e.target.files[0]);
       setPreview(window.URL.createObjectURL(e.target.files[0]));
-      console.log(e.target.files[0]);
+      // console.log(e.target.files[0]);
       console.log(e.target.files[0].name.replace(/\.[^/.]+$/, ''));
-      if (props.setImgAlt && props.setImg) {
+      props.setImg(e.target.files[0]);
+      if (props.setImgAlt) {
         props.setImgAlt(e.target.files[0].name.replace(/\.[^/.]+$/, ''));
-        props.setImg(e.target.files[0]);
       }
       return;
     }

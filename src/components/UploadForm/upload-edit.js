@@ -15,7 +15,9 @@ export default function uploadAndEdit(
       .patch(`${APIBase}${route}/update`, fd, config)
       .then(res => {
         console.log(res);
-        goBackHandler();
+        if (goBackHandler) {
+          goBackHandler();
+        }
       })
       .catch(err => console.log(err));
     toast.promise(updatePromise, {
