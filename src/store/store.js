@@ -7,6 +7,7 @@ import {
   ordersSlice,
   productsSlice,
   reportsSlice,
+  reviewsSlice,
   subCategoriesSlice,
 } from './reducers';
 
@@ -20,5 +21,6 @@ export const store = configureStore({
     products: productsSlice,
     orders: ordersSlice,
     reports: reportsSlice,
+    reviews: reviewsSlice,
   },
 });

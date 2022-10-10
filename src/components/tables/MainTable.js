@@ -13,9 +13,11 @@ import acceptOrderIcon from '../../assets/Accept Order.svg';
 import rejectOrderIcon from '../../assets/Reject Order.svg';
 
 import axios from 'axios';
+// import { useNavigate } from 'react-router-dom';
 
 const MainTable = props => {
   const dispatch = useDispatch();
+  // const navigate = useNavigate();
 
   // console.log(props);
   const config = {
@@ -198,7 +200,14 @@ const MainTable = props => {
                     props.setShowAddAD(true);
                   }}
                 />
-                <img src={reviewsIcon} alt='reviews icon' />
+                <img
+                  src={reviewsIcon}
+                  alt='reviews icon'
+                  onClick={() => {
+                    props.setUpdatedPage(params.row.id);
+                    props.setShowReviews(true);
+                  }}
+                />
               </div>
             </div>
           );
@@ -543,7 +552,7 @@ const MainTable = props => {
         align: 'center',
         hide: props.arabicDesc ? props.arabicDesc.hide : true,
       },
-      // ...colData,
+
       {
         field: 'Actions',
         headerName: 'Actions  الإجراءات',

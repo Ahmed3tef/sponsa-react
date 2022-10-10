@@ -32,6 +32,7 @@ const MainTablePage = props => {
         englishDesc={props.englishDesc}
         setItemId={props.setItemId}
         setOverlay={props.setOverlay}
+        setShowReviews={props.setShowReviews}
       />
     </Container>
   );

@@ -17,6 +17,7 @@ import {
   Reports,
   Orders,
   Profile,
+  Reviews,
 } from './pages';
 
 import Layout from './pages/Layout';
@@ -40,8 +41,16 @@ const App = () => {
           <Sidebar currentTab={currentTab} setCurrentTab={setCurrentTab} />
           <main className='main p-5'>
             {/* <Routes>
-            <Route />
-          </Routes> */}
+              <Route path='/home' index element={<Home />} />
+              <Route path='/ads' element={<Ads />} />
+              <Route path='/profile' element={<Profile />} />
+              <Route path='/categories' element={<Categories />} />
+              <Route path='/subcategories' element={<SubCategories />} />
+              <Route path='/products' element={<Products />} />
+              <Route path='/reports' element={<Reports />} />
+              <Route path='/orders' element={<Orders />} />
+              <Route path='/reviews' element={<Reviews />} />
+            </Routes> */}
             {currentTab === 'home' && <Home />}
 
             {currentTab === 'ads' && <Ads />}

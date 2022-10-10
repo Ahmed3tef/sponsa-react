@@ -1,0 +1,11 @@
+.reviews {
+}
+.review {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.review-img {
+  width: 15rem;
+  height: 12rem;
+}

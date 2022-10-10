@@ -14,22 +14,31 @@ import {
 } from '..';
 import axios from 'axios';
 import { APIBase } from '../../store/reducers/api';
+import { Reviews } from '../../pages';
 
 const MainPageLayout = props => {
   const token = useSelector(state => state.auth.token);
   const [showAddPage, setShowAddPage] = useState(false);
   const [updatedPage, setUpdatedPage] = useState(null);
+  const [showReviews, setShowReviews] = useState(false);
   const [overlay, setOverlay] = useState(false);
   const [itemId, setItemId] = useState('');
   const dispatch = useDispatch();
 
   const showAddHandler = () => {
+    setShowReviews(false);
+
     setUpdatedPage(null);
     setShowAddPage(true);
   };
   const goBackHandler = () => {
     dispatch(props.action);
     setShowAddPage(false);
+    setShowReviews(false);
+  };
+  const showReviewsHandler = () => {
+    setShowAddPage(true);
+    setShowReviews(true);
   };
 
   useEffect(() => {
@@ -65,6 +74,7 @@ const MainPageLayout = props => {
           setShowAddPage={setShowAddPage}
           showAddHandler={showAddHandler}
           setUpdatedPage={setUpdatedPage}
+          setShowReviews={showReviewsHandler}
           updatedPage={updatedPage}
           setOverlay={setOverlay}
           setItemId={setItemId}
@@ -120,8 +130,15 @@ const MainPageLayout = props => {
               goBackHandler={goBackHandler}
             />
           )}
-          {props.path === 'products' && (
+          {props.path === 'products' && !showReviews && (
             <UploadProduct
+              token={token}
+              updatedPage={updatedPage}
+              goBackHandler={goBackHandler}
+            />
+          )}
+          {showReviews && (
+            <Reviews
               token={token}
               updatedPage={updatedPage}
               goBackHandler={goBackHandler}

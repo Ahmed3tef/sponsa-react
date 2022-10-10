@@ -7,3 +7,4 @@ export { default as Products } from './Products';
 export { default as Orders } from './Orders';
 export { default as Reports } from './Reports/Reports';
 export { default as Profile } from './Profile';
+export { default as Reviews } from './Reviews';

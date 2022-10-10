@@ -6,3 +6,4 @@ export { default as productsSlice } from './products';
 export { default as ordersSlice } from './orders';
 export { default as adminSlice } from './admin';
 export { default as reportsSlice } from './reports';
+export { default as reviewsSlice } from './reviews';
