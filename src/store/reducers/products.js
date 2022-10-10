@@ -46,6 +46,8 @@ export const productsSlice = createSlice({
             // discountPrice: obj.prices[0].discountPrice,
 
             hintText: obj.smallDescription.hintText,
+            subText: obj.smallDescription.subText,
+            headText: obj.smallDescription.headText,
 
             category: obj.catId,
             subcategory: obj.subcatId,
@@ -70,3 +72,57 @@ export const productsSlice = createSlice({
 export const getProducts = state => state.products;
 
 export default productsSlice.reducer;
+
+/*
+
+{category
+: 
+{names: {…}, image: {…}, _id: '633078fc8dadd857244e558d', status: 1, createdAt: '2022-09-25T15:51:24.251Z', …}
+headText
+: 
+{arabic: 'تيست عنوان رئيسي بالعربي', english: 'test english head text'}
+hintText
+: 
+{arabic: 'تيست هينت', english: 'ttest hint text'}
+id
+: 
+"6332e8f18dadd857244e5839"
+images
+: 
+Array(1)
+0
+: 
+{imageUrl: 'productImage/9edd350a-966f-494a-8ce0-625ce802fbcd.jpeg', _id: '6332e8f18dadd857244e583a'}
+length
+: 
+1
+[[Prototype]]
+: 
+Array(0)
+imgAlt
+: 
+"my alt"
+imgUrl
+: 
+"productImage/9edd350a-966f-494a-8ce0-625ce802fbcd.jpeg"
+name
+: 
+{arabic: 'السم بالعربي', english: 'english name'}
+position
+: 
+1
+prices
+: 
+[{…}]
+size
+: 
+['150 ml']
+subText
+: 
+{arabic: 'تيست صاب تيكست', english: 'test sub text'}
+subcategory
+: 
+{names: {…}, image: {…}, _id: '6332e8db8dadd857244e5835', categoriesId: '633078fc8dadd857244e558d', status: 0, …}
+
+}
+*/

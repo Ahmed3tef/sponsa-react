@@ -12,30 +12,48 @@ import LargeText from './LargeText';
 
 const UploadProduct = ({ updatedPage, goBackHandler, token }) => {
   const [arabicName, setArabicName] = useState(
-    updatedPage ? updatedPage.arabicName : ''
+    updatedPage ? updatedPage.names.arabic : ''
   );
   const [englishName, setEnglishName] = useState(
-    updatedPage ? updatedPage.englishName : ''
+    updatedPage ? updatedPage.names.english : ''
   );
+  // IMAGES
   const [img, setImg] = useState(
-    updatedPage ? APIBase + updatedPage.imgUrl : ''
+    updatedPage ? APIBase + updatedPage.images[0].imageUrl : ''
   );
-  const [img2, setImg2] = useState(
-    updatedPage ? APIBase + updatedPage.imgUrl : ''
-  );
-  const [img3, setImg3] = useState(
-    updatedPage ? APIBase + updatedPage.imgUrl : ''
-  );
-  const [img4, setImg4] = useState(
-    updatedPage ? APIBase + updatedPage.imgUrl : ''
-  );
-  const [imgAlt, setImgAlt] = useState(updatedPage ? updatedPage.imgAlt : '');
+  const [img2, setImg2] = useState();
+  // updatedPage.images ? APIBase + updatedPage.images[1].imageUrl : ''
+  const [img3, setImg3] = useState();
+  // updatedPage.images ? APIBase + updatedPage.images[2].imageUrl : ''
+  const [img4, setImg4] = useState();
+  // updatedPage.images ? APIBase + updatedPage.images[3].imageUrl : ''
+  // CAT AND SUB CAT
   const [catId, setCatId] = useState(
-    updatedPage ? updatedPage.category.id : ''
+    updatedPage ? updatedPage.category._id : ''
   );
   const [subCatId, setSubCatId] = useState(
-    updatedPage ? updatedPage.category.id : ''
+    updatedPage ? updatedPage.subcategory._id : ''
   );
+  // NAMES
+  const [arabicHintText, setArabicHintText] = useState(
+    updatedPage ? updatedPage.hintText.arabic : ''
+  );
+  const [englishHintText, setEnglishHintText] = useState(
+    updatedPage ? updatedPage.hintText.english : ''
+  );
+  const [arabicHeadText, setArabicHeadText] = useState(
+    updatedPage ? updatedPage.headText.arabic : ''
+  );
+  const [englishHeadText, setEnglishHeadText] = useState(
+    updatedPage ? updatedPage.headText.english : ''
+  );
+  const [arabicSubText, setArabicSubText] = useState(
+    updatedPage ? updatedPage.subText.arabic : ''
+  );
+  const [englishSubText, setEnglishSubText] = useState(
+    updatedPage ? updatedPage.subText.english : ''
+  );
+  // PRICES
   const [amount, setAmount] = useState('');
   const [amount2, setAmount2] = useState('');
   const [amount3, setAmount3] = useState('');
@@ -44,8 +62,7 @@ const UploadProduct = ({ updatedPage, goBackHandler, token }) => {
   const [price2, setPrice2] = useState('');
   const [price3, setPrice3] = useState('');
   const [price4, setPrice4] = useState('');
-  const [arabicHintText, setArabicHintText] = useState('');
-  const [englishHintText, setEnglishHintText] = useState('');
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -116,16 +133,16 @@ const UploadProduct = ({ updatedPage, goBackHandler, token }) => {
           <MiniText
             placeholder='Add Product Name ...'
             label='Product Name'
-            // setName={setName}
-            // name={name}
+            setName={setEnglishName}
+            name={englishName}
           />
           <MiniText
             placeholder=' ...أضف اسم المُنتج'
             label='اسم المُنتج'
             direction='rtl'
             path='product'
-            // setName={setPhone}
-            // name={phone}
+            setName={setArabicName}
+            name={arabicName}
           />
         </div>
         <div className='product-input-text mb-3'>
