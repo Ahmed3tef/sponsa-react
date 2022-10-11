@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { sidebarData } from './sidebarData';
 import './Sidebar.css';
 import profileImg from '../../assets/Photo.png';
 import menuBar from '../../assets/burgerIcon.svg';
 import { FaPowerOff } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/reducers/auth';
+import { loadAdmin } from '../../store/reducers/admin';
+import { APIBase } from '../../store/reducers/api';
 const Sidebar = props => {
+  const { imageUrl, name } = useSelector(state => state.admin.admin);
   const [showSidebar, setShowSidebar] = useState(true);
   const dispatch = useDispatch();
   const toggleSidebarHandler = () => {
@@ -14,6 +17,10 @@ const Sidebar = props => {
   };
 
   // {!showSidebar && ()}  ${showSidebar ? '' : ' sidebar-small'
+
+  useEffect(() => {
+    dispatch(loadAdmin());
+  }, [dispatch]);
 
   const navLinkClickHandler = path => {
     props.setCurrentTab(path);
@@ -29,9 +36,9 @@ const Sidebar = props => {
       </div>
 
       <div className='sidebar__img'>
-        <img src={profileImg} alt='profile img' />
+        <img src={`${APIBase}${imageUrl}`} alt='profile img' />
       </div>
-      <h3 className='user-name'>Hatem El-Shawaf</h3>
+      <h3 className='user-name'>{name}</h3>
       <div className='sidebar__nav'>
         <div className='sidebar__section'>
           {sidebarData.map((bar, i) => (

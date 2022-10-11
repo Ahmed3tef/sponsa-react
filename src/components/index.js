@@ -9,3 +9,4 @@ export { default as UploadCategory } from './UploadForm/UploadCategory';
 export { default as UploadProfile } from './UploadForm/UploadProfile';
 export { default as UploadProduct } from './UploadForm/UploadProduct';
 export { default as Selector } from './UploadForm/Selector';
+export { default as Ratings } from './icons/Ratings';

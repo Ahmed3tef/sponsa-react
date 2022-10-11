@@ -29,6 +29,8 @@ export const reviewsSlice = createSlice({
         }
 
         let { rating } = payload.data;
+        const productName = payload.data.names.english;
+        // let {}
         const reviews = rating.map(rating => {
           const {
             personComment: comment,
@@ -38,6 +40,7 @@ export const reviewsSlice = createSlice({
             _id: id,
           } = rating;
           return {
+            productName,
             comment,
             starRate,
             date,

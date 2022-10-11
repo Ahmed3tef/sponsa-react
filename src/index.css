@@ -6,7 +6,9 @@
 
   --color-row-odd: #fbe4eb;
   --color-row-even: var(--color-alt);
-
+  --color-review-img-odd: #f7ecde;
+  --color-review-img-even: #fcf8f4;
+  --color-comment: #060606;
   --color-alt: #fff3f7;
   --color-black: #000;
   --color-white: #fff;

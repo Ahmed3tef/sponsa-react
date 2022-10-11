@@ -36,6 +36,7 @@ export const adminSlice = createSlice({
           name,
           phone,
           imageUrl,
+
           email,
         };
       }

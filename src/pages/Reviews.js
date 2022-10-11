@@ -5,40 +5,53 @@ import { useDispatch, useSelector } from 'react-redux';
 import { APIBase } from '../store/reducers/api';
 import { loadReviews } from '../store/reducers/reviews';
 import './reviews.css';
-const Reviews = ({ updatedPage }) => {
+import { Ratings } from '../components';
+const Reviews = ({ updatedPage: id }) => {
   const dispatch = useDispatch();
   const reviews = useSelector(state => state.reviews.reviews);
-  // console.log(updatedPage);
 
   useEffect(() => {
-    dispatch(loadReviews('6332e8f18dadd857244e5839'));
-  }, [updatedPage]);
-  console.log(reviews);
-  // console.log(reviews);
-  // const r = {
-  //   comment: rating.personComment,
-  //   starRate: rating.starRate,
-  //   date: rating.timestamp,
-  //   userName: ratings.userId.displayName,
-  //   userImg: ratings.userId.imageUrl,
-  // };
+    // id => '6332e8f18dadd857244e5839'
+    dispatch(loadReviews(id));
+  }, [id]);
+
   return (
-    <Container className='p-5 '>
+    <Container fluid className='p-5 '>
       <div className='reviews'>
-        {reviews.map(r => (
-          <div className='review'>
-            <div className='review-img'>
-              <img src={r.userImg} alt='' />
-            </div>
-            <div className='review-content'>
-              <div className='review-info'>
-                <div className='user'>{`${r.userName} - ${r.date}`}</div>
-                <div className='rating'></div>
+        <div className='reviews-title container-title'>
+          {reviews && reviews[0] && reviews[0].productName}
+        </div>
+        {reviews.map(r => {
+          return (
+            <div className='review'>
+              <div className='review-img'>
+                <img src={r.userImg} alt='' />
               </div>
-              <div className='review-comment'>{`${r.comment}`}</div>
+              <div className='review-content'>
+                <div className='review-info'>
+                  <div className='review-user mb-2'>
+                    <span className='container-title me-4'>{`${r.userName}`}</span>
+                    -
+                    <span className='comment-date ms-4'>{`${new Date(
+                      r.date
+                    ).toLocaleString('en-CA', {
+                      year: 'numeric',
+                      month: '2-digit',
+                      day: '2-digit',
+                      weekday: 'short',
+                      hour: '2-digit',
+                      hour12: true,
+                      minute: '2-digit',
+                      second: '2-digit',
+                    })}`}</span>
+                  </div>
+                  <Ratings value={r.starRate} />
+                </div>
+                <div className='review-comment'>{`${r.comment}`}</div>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </Container>
   );
