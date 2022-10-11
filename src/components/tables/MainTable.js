@@ -204,7 +204,7 @@ const MainTable = props => {
                   src={reviewsIcon}
                   alt='reviews icon'
                   onClick={() => {
-                    props.setUpdatedPage(params.row.id);
+                    props.setUpdatedPage(params.row);
                     props.setShowReviews(true);
                   }}
                 />

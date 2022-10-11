@@ -1,65 +1,52 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import loadData from './loadData';
+import { loadDataWithParams } from './loadData';
 
 const initialState = {
-  reports: [],
-  isLoading: false,
+  mostSelling: [],
+  mostCustomer: [],
+  mostSelling: [],
+
   error: null,
 };
 
-export const loadReports = createAsyncThunk('reports/loadReports', thunkAPI =>
-  loadData(thunkAPI, 'product')
+export const loadMostSelling = createAsyncThunk(
+  'reports/loadMostSelling',
+  (params, thunkAPI) =>
+    loadDataWithParams(thunkAPI, 'reports/mostselling', params)
 );
 
 export const reportsSlice = createSlice({
   name: 'reports',
   initialState,
   extraReducers: {
-    [loadReports.pending]: (state, action) => {
-      state.reports = [];
-      state.isLoading = true;
+    [loadMostSelling.pending]: (state, action) => {
+      state.mostSelling = [];
       state.error = null;
     },
-    [loadReports.fulfilled]: (state, { payload }) => {
-      // console.log(payload);
+    [loadMostSelling.fulfilled]: (state, { payload }) => {
       if (payload) {
         if (payload.status === 0) {
-          state.reports = [];
-          state.isLoading = false;
+          state.mostSelling = [];
           state.error = payload.message;
           return;
         }
         let data = payload.data.map((obj, i) => {
           return {
-            id: obj._id,
+            id: obj.product._id,
             position: 1 + i,
-            // arabicName: obj.names.arabic,
-            // englishName: obj.names.english,
-            name: obj.names,
-            imgUrl: obj.images[0].imageUrl,
-            imgAlt: obj.alt,
-            prices: obj.prices,
-            // currentPrice: obj.prices[0].currentPrice,
-            // discountPrice: obj.prices[0].discountPrice,
-
-            hintText: obj.smallDescription.hintText,
-
-            category: obj.catId,
-            subcategory: obj.subcatId,
-            size: obj.prices.map(price => price.size),
+            name: obj.product.names,
+            count: obj.count,
           };
         });
         console.log(data);
-        state.reports = data;
-        state.isLoading = false;
+        state.mostSelling = data;
         state.error = null;
       }
     },
-    [loadReports.rejected]: (state, action) => {
+    [loadMostSelling.rejected]: (state, action) => {
       // console.log(action);
-      state.isLoading = false;
-      state.reports = null;
+      state.mostSelling = [];
       state.error = action.payload;
     },
   },

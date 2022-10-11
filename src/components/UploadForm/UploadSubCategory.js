@@ -43,7 +43,7 @@ const UploadSubCategory = ({ updatedPage, goBackHandler, token }) => {
         authorization: token,
         id: catId,
       },
-      params: { id: updatedPage.id },
+      params: { id: updatedPage ? updatedPage.id : '' },
     };
     uploadAndEdit(
       updatedPage,
@@ -89,7 +89,7 @@ const UploadSubCategory = ({ updatedPage, goBackHandler, token }) => {
             </>
           }
           catId={catId}
-          setCatId={setCatId}
+          setId={setCatId}
           data={categories}
         />
       </div>

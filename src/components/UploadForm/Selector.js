@@ -4,18 +4,22 @@ import './selector.css';
 const Selector = props => {
   const changeIdHandler = e => {
     props.setId(e.target.value);
+
+    console.log(e.target.value);
   };
   return (
     <div className='input-container custom-select'>
       <div className='input-label text-center'>{props.label}</div>
-      <select onChange={changeIdHandler} value={props.Id} placeholder=''>
+      <select onChange={changeIdHandler} value='' placeholder=''>
         <option value='' disabled defaultValue>
           Select the main category for the subcategory ...
         </option>
         {props.data.map(el => {
+          // console.log(el);
           return (
-            <option
-              value={el.id}>{`${el.englishName} - ${el.arabicName}`}</option>
+            <option value={el.id}>
+              {`${el.englishName} - ${el.arabicName}`}
+            </option>
           );
         })}
       </select>

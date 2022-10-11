@@ -119,7 +119,7 @@ const UploadProduct = ({ updatedPage, goBackHandler, token }) => {
     // {currentPrice:price, size:amount}
     fd.append('image', img);
     fd.append('alt', 'product');
-
+    console.log(catId, subCatId);
     fd.append('catId', catId);
     fd.append('subcatId', subCatId);
 
@@ -134,9 +134,6 @@ const UploadProduct = ({ updatedPage, goBackHandler, token }) => {
 
     fd.append('arabicHintText', arabicHintText);
     fd.append('englishHintText', englishHintText);
-
-    fd.append('arabicLargeDescription', arabicDescTitle);
-    fd.append('englishLargeDescription', englishDesc);
 
     if (amount && price)
       prices.push({ currentPrice: price, size: amount, discountPrice: 0 });
@@ -159,23 +156,44 @@ const UploadProduct = ({ updatedPage, goBackHandler, token }) => {
         discountPrice: 0,
       });
 
-    fd.append('prices', prices);
-
     if (arabicDescTitle && arabicDesc)
       descriptionsArabic.push({
         headTitle: arabicDescTitle,
         description: [arabicDesc],
       });
     if (englishDesc && englishDescTitle) {
+      let finalDescList = [];
+      finalDescList.push(englishDesc);
       descriptionsEnglish.push({
         headTitle: englishDescTitle,
-        description: [englishDesc],
+        description: finalDescList,
       });
     }
 
-    fd.append('arabicAdditionalDesc', arabicAdditionalDesc);
+    descriptionsEnglish.forEach((e, i) => {
+      fd.append(`englishLargeDescription[${i}][headTitle]`, e.headTitle);
+      fd.append(`englishLargeDescription[${i}][description][0]`, e.description);
+    });
+    descriptionsArabic.forEach((e, i) => {
+      fd.append(`arabicLargeDescription[${i}][headTitle]`, e.headTitle);
+      fd.append(`arabicLargeDescription[${i}][description][0]`, e.description);
+    });
+    prices.forEach((e, i) => {
+      fd.append(`prices[${i}][discountPrice]`, e.discountPrice);
+      fd.append(`prices[${i}][currentPrice]`, e.currentPrice);
+      fd.append(`prices[${i}][size]`, e.size);
+    });
 
-    fd.append('englishLargeDescription', descriptionsEnglish);
+    // descriptionsEnglish.forEach((e, i) => {
+    //     fd.append(`arabicLargeDescription[${i}]`, e);
+    // })
+
+    // fd.append('englishLargeDescription[0]', descriptionsEnglish);
+    // fd.append('arabicAdditionalDesc', arabicAdditionalDesc);
+
+    // arabicAdditionalDesc.forEach(function(e, index) {
+    //   fd.append('arabicAdditionalDesc[$index]', e);
+    // });
     // fd.append('arabicAdditionalDesc', {
     //   key: 'size',
     //   value: arabicAdditionalDesc,

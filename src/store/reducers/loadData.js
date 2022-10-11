@@ -2,7 +2,7 @@ import axios from 'axios';
 import { APIBase } from './api';
 import { getAdminToken } from './auth';
 
-const token = localStorage.getItem('token');
+const token = sessionStorage.getItem('token');
 console.log(token);
 const config = {
   headers: {
@@ -30,6 +30,22 @@ export async function loadDataWithId(thunkAPI, path, id) {
   };
   return axios
     .get(`${APIBase}${path}`, configId, thunkAPI)
+    .then(res => {
+      return res.data;
+    })
+    .catch(err => {
+      return err.response.data;
+    });
+}
+export async function loadDataWithParams(thunkAPI, path, params) {
+  const config = {
+    headers: {
+      authorization: token,
+    },
+    params,
+  };
+  return axios
+    .post(`${APIBase}${path}`, null, config, thunkAPI)
     .then(res => {
       return res.data;
     })
