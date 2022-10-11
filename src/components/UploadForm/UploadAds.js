@@ -38,7 +38,7 @@ const UploadAds = ({ updatedPage, goBackHandler, token }) => {
       headers: {
         authorization: token,
       },
-      params: { id: updatedPage.id },
+      params: { id: updatedPage ? updatedPage.id : '' },
     };
     uploadAndEdit(updatedPage, 'ads', fd, config, goBackHandler, 'AD');
   };

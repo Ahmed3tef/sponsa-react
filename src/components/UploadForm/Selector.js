@@ -9,7 +9,7 @@ const Selector = props => {
     <div className='input-container custom-select'>
       <div className='input-label text-center'>{props.label}</div>
       <select onChange={changeIdHandler} value={props.Id} placeholder=''>
-        <option value='' disabled selected>
+        <option value='' disabled defaultValue>
           Select the main category for the subcategory ...
         </option>
         {props.data.map(el => {

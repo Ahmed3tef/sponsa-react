@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
 import { ToastContainer } from 'react-toastify';
@@ -21,15 +21,20 @@ import {
 } from './pages';
 
 import Layout from './pages/Layout';
+import { setTokenFromRememberMe } from './store/reducers/auth';
 
 const App = () => {
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const [currentTab, setCurrentTab] = useState('home');
   const token = useSelector(state => state.auth.token);
 
   useEffect(() => {
     if (isLoggedIn) {
-      localStorage.setItem('token', token);
+      sessionStorage.setItem('token', token);
+    } else if (localStorage.getItem('token')) {
+      const token = localStorage.getItem('token');
+      dispatch(setTokenFromRememberMe(token));
     }
   }, [isLoggedIn, token]);
 

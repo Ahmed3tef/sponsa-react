@@ -64,11 +64,33 @@ const UploadProduct = ({ updatedPage, goBackHandler, token }) => {
     updatedPage ? updatedPage.hintText.english : ''
   );
   const [arabicDesc, setArabicDesc] = useState(
-    updatedPage ? updatedPage.subText.english : ''
+    updatedPage && updatedPage.arabicLargeDescription
+      ? updatedPage.arabicLargeDescription.english
+      : ''
+  );
+  const [arabicDescTitle, setArabicDescTitle] = useState(
+    updatedPage && updatedPage.arabicLargeDescription
+      ? updatedPage.arabicLargeDescription[0].headTitle
+      : ''
   );
   const [englishDesc, setEnglishDesc] = useState(
-    updatedPage ? updatedPage.subText.english : ''
+    updatedPage && updatedPage.englishLargeDescription
+      ? updatedPage.englishLargeDescription[0].headTitle
+      : ''
   );
+  const [englishDescTitle, setEnglishDescTitle] = useState(
+    updatedPage && updatedPage.englishLargeDescription
+      ? updatedPage.englishLargeDescription[0].headTitle
+      : ''
+  );
+  const [arabicAdditionalDesc, setArabicAdditionalDesc] = useState('');
+  const [englishAdditionalDesc, setEnglishAdditionalDesc] = useState('');
+  // const [arabicAdditionalDescTitle, setArabicAdditionalDescTitle] = useState(
+  //   ''
+  // );
+  // const [englishAdditionalDescTitle, setEnglishAdditionalDescTitle] = useState(
+  //   ''
+  // );
   // PRICES
   const [amount, setAmount] = useState('');
   const [amount2, setAmount2] = useState('');
@@ -90,18 +112,89 @@ const UploadProduct = ({ updatedPage, goBackHandler, token }) => {
   const Subcategories = useSelector(state => state.subCategories.subCategories);
 
   const uploadADHandler = () => {
-    // const fd = new FormData();
-    // fd.append('image', img);
-    // fd.append('alt', imgAlt);
-    // fd.append('arabicName', arabicName);
-    // fd.append('englishName', englishName);
-    // const config = {
-    //   headers: {
-    //     authorization: token,
-    //   },
-    //   params: { id: updatedPage.id },
-    // };
-    // uploadAndEdit(updatedPage, 'cat', fd, config, goBackHandler, 'Category');
+    const fd = new FormData();
+    let prices = [];
+    let descriptionsArabic = [];
+    let descriptionsEnglish = [];
+    // {currentPrice:price, size:amount}
+    fd.append('image', img);
+    fd.append('alt', 'product');
+
+    fd.append('catId', catId);
+    fd.append('subcatId', subCatId);
+
+    fd.append('arabicName', arabicName);
+    fd.append('englishName', englishName);
+
+    fd.append('arabicHeadText', arabicHeadText);
+    fd.append('englishHeadText', englishHeadText);
+
+    fd.append('arabicSubText', arabicSubText);
+    fd.append('englishSubText', englishSubText);
+
+    fd.append('arabicHintText', arabicHintText);
+    fd.append('englishHintText', englishHintText);
+
+    fd.append('arabicLargeDescription', arabicDescTitle);
+    fd.append('englishLargeDescription', englishDesc);
+
+    if (amount && price)
+      prices.push({ currentPrice: price, size: amount, discountPrice: 0 });
+    if (amount2 && price2)
+      prices.push({
+        currentPrice: price2,
+        size: amount2,
+        discountPrice: 0,
+      });
+    if (amount3 && price3)
+      prices.push({
+        currentPrice: price3,
+        size: amount3,
+        discountPrice: 0,
+      });
+    if (amount4 && price4)
+      prices.push({
+        currentPrice: price4,
+        size: amount4,
+        discountPrice: 0,
+      });
+
+    fd.append('prices', prices);
+
+    if (arabicDescTitle && arabicDesc)
+      descriptionsArabic.push({
+        headTitle: arabicDescTitle,
+        description: [arabicDesc],
+      });
+    if (englishDesc && englishDescTitle) {
+      descriptionsEnglish.push({
+        headTitle: englishDescTitle,
+        description: [englishDesc],
+      });
+    }
+
+    fd.append('arabicAdditionalDesc', arabicAdditionalDesc);
+
+    fd.append('englishLargeDescription', descriptionsEnglish);
+    // fd.append('arabicAdditionalDesc', {
+    //   key: 'size',
+    //   value: arabicAdditionalDesc,
+    // });
+    // fd.append('englishAdditionalDesc', {
+    //   key: 'size',
+    //   value: descriptionsEnglish,
+    // });
+    // let params
+
+    const config = {
+      headers: {
+        authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiMSIsInVzZXJJZCI6IjYzMjc0ZjUwNmFjNTAwOTE4ZDFhMTA1MCIsInN0YXR1cyI6MSwiaWF0IjoxNjY1NDk2MjkwLCJleHAiOjE2NjgwODgyOTB9.UMgfJrZ4uobLUYj6vs2XQsTQmDj2JaVwDG_9UTYbOBo',
+      },
+      params: { id: updatedPage ? updatedPage.id : '' },
+    };
+    uploadAndEdit(updatedPage, 'product', fd, config, goBackHandler, 'Product');
+    console.log(fd);
   };
 
   return (
@@ -119,31 +212,33 @@ const UploadProduct = ({ updatedPage, goBackHandler, token }) => {
       </div>
 
       <div className='product-input'>
-        <div className='text-container mb-5 mt-5'>
-          <Selector
-            label={
-              <>
-                <p>Category</p>
-                <p>الفئة</p>
-              </>
-            }
-            Id={catId}
-            setId={setCatId}
-            data={categories}
-          />
-        </div>
-        <div className='text-container mb-5 mt-5'>
-          <Selector
-            label={
-              <>
-                <p>Subcategory</p>
-                <p>الفئة الفرعية</p>
-              </>
-            }
-            Id={subCatId}
-            setId={setSubCatId}
-            data={Subcategories}
-          />
+        <div className='selectors mb-5'>
+          <div className='text-container mt-5 mb-0'>
+            <Selector
+              label={
+                <>
+                  <p>Category</p>
+                  <p>الفئة</p>
+                </>
+              }
+              Id={catId}
+              setId={setCatId}
+              data={categories}
+            />
+          </div>
+          <div className='text-container mb-5 mt-5'>
+            <Selector
+              label={
+                <>
+                  <p>Subcategory</p>
+                  <p>الفئة الفرعية</p>
+                </>
+              }
+              Id={subCatId}
+              setId={setSubCatId}
+              data={Subcategories}
+            />
+          </div>
         </div>
         <div className='product-input-text mb-3 mt-3'>
           <MiniText
@@ -274,39 +369,60 @@ const UploadProduct = ({ updatedPage, goBackHandler, token }) => {
             setDesc={setArabicHintText}
           />
         </div>
-        <div className='product-desc-container'>
-          <div className='container-title ms-5'>Product Description</div>
+        <div className='product-desc-container mb-5'>
+          <div className='container-title'>Product Description</div>
           <div className='product-desc'>
             <MiniText
               classes='mb-3 mt-5'
               placeholder='Add  Title ...'
               btn='Title'
               path='product'
-              // setName={setPhone}
-              // name={phone}
+              setName={setEnglishDescTitle}
+              name={englishDescTitle}
             />
             <LargeText
               placeholder='Add Description ...'
               btn='Description'
-              desc={englishHintText}
-              setDesc={setEnglishHintText}
+              desc={englishDesc}
+              setDesc={setEnglishDesc}
             />
           </div>
         </div>
-        <div className='product-small-desc'>
+        <div className='product-desc-container mb-5'>
+          <div className='product-desc'>
+            <MiniText
+              classes='mb-3 mt-5'
+              placeholder='...أضف العنوان'
+              btn='العنوان'
+              path='product'
+              setName={setArabicDescTitle}
+              name={arabicDescTitle}
+              direction='rtl'
+              turnText={false}
+            />
+            <LargeText
+              placeholder=' ...أضف الوصف '
+              btn='الوصف'
+              desc={arabicDesc}
+              setDesc={setArabicDesc}
+              direction='rtl'
+            />
+          </div>
+        </div>
+        <div className='product-small-desc mb-5'>
           <LargeText
             classes='mb-5 mt-5'
             placeholder='Add Short Description ...'
             label='Short Description'
-            desc={englishHintText}
-            setDesc={setEnglishHintText}
+            desc={englishAdditionalDesc}
+            setDesc={setEnglishAdditionalDesc}
           />
           <LargeText
             placeholder=' ...أضف وصف مُختصر للمُنتج'
             label='وصف مُختصر'
             direction='rtl'
-            desc={arabicHintText}
-            setDesc={setArabicHintText}
+            desc={arabicAdditionalDesc}
+            setDesc={setArabicAdditionalDesc}
           />
         </div>
         <div className='form-btns mt-5'>

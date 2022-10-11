@@ -8,6 +8,7 @@
   justify-content: flex-start;
   align-items: center;
 }
+
 .login__form {
   max-width: 70rem;
   padding: 6rem;
@@ -16,6 +17,7 @@
   border-radius: 10rem;
   box-shadow: var(--shadow-login);
 }
+
 .login__form form {
   display: flex;
   flex-direction: column;
@@ -26,10 +28,12 @@
   font-weight: bold;
   font-style: italic;
 }
+
 .login__logo {
   height: 20rem;
   margin-bottom: 8.5rem;
 }
+
 .login__logo img {
   height: 100%;
 }
@@ -76,6 +80,7 @@
   display: flex;
   align-items: center;
 }
+
 input[type='checkbox'] {
   width: 1.5rem;
   height: 1.5rem;
@@ -104,8 +109,24 @@ input[type='checkbox'] {
   background-color: var(--color-main-darkest);
   transform: translateY(-5px) scale(1.05);
 }
+
 .login__btn:active {
   background-color: var(--color-main-darkest);
   transform: translateY(0) scale(0.95);
   box-shadow: 2px 2px 3px var(--color-shadow-btn-login);
+}
+
+.pass-eye {
+  color: var(--color-main-darker);
+  font-size: 2.5rem;
+  margin-left: -10rem;
+  margin-right: 2.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 1540px) {
+  .pass-eye {
+    margin-left: -8rem;
+    margin-right: 2.3rem;
+  }
 }

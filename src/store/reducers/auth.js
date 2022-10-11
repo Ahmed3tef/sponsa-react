@@ -36,6 +36,12 @@ export const authSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.isLoggedIn = false;
+      localStorage.clear();
+      sessionStorage.clear();
+    },
+    setTokenFromRememberMe(state, action) {
+      state.token = action.payload;
+      state.isLoggedIn = true;
     },
   },
   extraReducers: {
@@ -72,7 +78,7 @@ export const authSlice = createSlice({
 });
 
 export const getAdminToken = state => state.auth.token;
-export const { logout } = authSlice.actions;
+export const { logout, setTokenFromRememberMe } = authSlice.actions;
 
 export default authSlice.reducer;
 

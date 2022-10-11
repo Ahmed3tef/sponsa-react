@@ -9,7 +9,7 @@ const MiniText = props => {
   return (
     <div
       className={`${props.classes} input-container input-text-mini`}
-      style={{ direction: direction }}>
+      style={{ direction: !props.turnText ? '' : direction }}>
       {props.label && (
         <div className='input-label'>
           <p>{props.label}</p>

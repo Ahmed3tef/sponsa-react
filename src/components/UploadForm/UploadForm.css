@@ -254,6 +254,9 @@
   width: 110rem;
   overflow-x: scroll;
 }
+.product-desc input {
+  width: 110rem;
+}
 .product-small-desc .input-text-large textarea {
   height: 10rem;
 }
@@ -264,8 +267,9 @@
 .product-desc {
   display: flex;
   flex-direction: column;
+  width: 130rem;
+  margin: auto;
 }
-
 .product-desc .form-btn {
   width: 10rem;
   height: 3rem;
@@ -288,7 +292,13 @@
   font-size: 1.6rem;
   color: var(--color-main-darker);
 }
-.product-desc {
-  width: 130rem;
-  margin: auto;
+
+.product-desc-container .container-title {
+  margin: 6rem 0 3rem -13rem;
+}
+
+@media (max-width: 1540px) {
+  .product-desc-container .container-title {
+    margin: 6rem 0 3rem 2rem;
+  }
 }
