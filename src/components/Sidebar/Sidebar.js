@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { sidebarData } from './sidebarData';
 import './Sidebar.css';
-import profileImg from '../../assets/Photo.png';
+
 import menuBar from '../../assets/burgerIcon.svg';
 import { FaPowerOff } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
