@@ -1,0 +1,6 @@
+.report:nth-child(1n) .reports__report {
+  background-color: var(--color-main);
+}
+.report:nth-child(2n) .reports__report {
+  background-color: var(--color-main-darkest);
+}

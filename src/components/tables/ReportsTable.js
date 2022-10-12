@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // import { Col, Container, Row } from 'react-bootstrap';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
-import './mainTable.css';
+import './reportsTable.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { APIBase } from '../../store/reducers/api';
 import axios from 'axios';

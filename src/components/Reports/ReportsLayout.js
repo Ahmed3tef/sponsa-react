@@ -3,6 +3,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Chart, ReportsTable } from '..';
 import { loadMostSelling } from '../../store/reducers/reports';
+import './ReportsLayout.css';
 
 const ReportsLayout = props => {
   // dispatch to fetch here
@@ -17,7 +18,7 @@ const ReportsLayout = props => {
       <Row className='reports__main '>
         <h2 className='reports__title'>September Reports</h2>
         {[...new Array(4)].map((report, i) => (
-          <Col sm={3} key={i}>
+          <Col sm={3} key={i} className='report'>
             <div className='reports__report'>
               <h3 className='reports__report-title'>Most Selling Product</h3>
               <p className='reports__report-info'>Sponsa Shampoo</p>
@@ -26,7 +27,7 @@ const ReportsLayout = props => {
         ))}
       </Row>
       <Row className='px-5'>
-        <Col sm={9}>
+        <Col sm={9} className='reports__table'>
           <ReportsTable
             token={props.token}
             path='most-product'
@@ -45,7 +46,7 @@ const ReportsLayout = props => {
           />
         </Col>
         <Col sm={3}>
-          <Chart />
+          <Chart data={mostSelling} />
         </Col>
       </Row>
     </Container>

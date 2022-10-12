@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { BiSearch } from 'react-icons/bi';
-import { MainTable } from '../';
+
+import { MainTable, Search } from '../';
 import './MainTablePage.css';
 const MainTablePage = props => {
   return (
@@ -10,14 +10,14 @@ const MainTablePage = props => {
         <div className='table-header'>
           <span>{props.title}</span>
         </div>
-        <div className='search '>
-          <input type='text' className='px-5 ' />
-          <BiSearch />
-        </div>
-        <div className='add-icon ' onClick={props.showAddHandler}>
-          <img src={props.addIcon} alt='add icon' />
-        </div>
+        <Search route={props.route} title={props.path} />
+        {props.addIcon && (
+          <div className='add-icon ' onClick={props.showAddHandler}>
+            <img src={props.addIcon} alt='add icon' />
+          </div>
+        )}
       </div>
+      <div className='main-table'></div>
       <MainTable
         token={props.token}
         path={props.path}

@@ -70,6 +70,7 @@ const MainPageLayout = props => {
         <MainTablePage
           token={token}
           path={props.path}
+          route={props.route}
           title={props.title}
           setShowAddPage={setShowAddPage}
           showAddHandler={showAddHandler}
