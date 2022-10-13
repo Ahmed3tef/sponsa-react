@@ -483,7 +483,25 @@ const MainTable = props => {
                 src={rejectOrderIcon}
                 alt='delete icon'
                 onClick={e => {
-                  axios.delete(`${APIBase}ads?id=${params.row.id}`, config);
+                  console.log(params.row.id);
+                  console.log(props.token);
+                  axios
+                    .patch(
+                      `${APIBase}order/updatestatus`,
+                      null,
+                      {
+                        headers: {
+                          authorization: props.token,
+                        },
+                        params: {
+                          id: params.row.id,
+                          orderStatus: 3,
+                        },
+                      }
+                      // params id, orderstatus
+                    )
+                    .then(res => dispatch(props.action))
+                    .catch(err => console.log(err.response.data));
                   // dispatch(loadAds());
                 }}
               />

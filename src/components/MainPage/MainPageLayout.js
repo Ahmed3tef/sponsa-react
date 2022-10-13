@@ -80,6 +80,7 @@ const MainPageLayout = props => {
           setOverlay={setOverlay}
           setItemId={setItemId}
           data={props.data}
+          action={props.action}
           addIcon={props.addIcon}
           image={props.image}
           arabicName={props.arabicName}
