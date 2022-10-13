@@ -25,6 +25,7 @@ const MainTablePage = props => {
         updatedPage={props.updatedPage}
         setShowAddAD={props.setShowAddPage}
         setUpdatedPage={props.setUpdatedPage}
+        setUpdatedType={props.setUpdatedType}
         image={props.image}
         englishName={props.englishName}
         arabicName={props.arabicName}

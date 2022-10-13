@@ -176,7 +176,7 @@ const MainTable = props => {
                   onClick={() => {
                     console.log(params.row);
                     props.setUpdatedPage(params.row);
-
+                    props.setUpdatedType('text');
                     props.setShowAddAD(true);
                   }}
                 />
@@ -196,6 +196,7 @@ const MainTable = props => {
                   className='pe-4'
                   onClick={() => {
                     props.setUpdatedPage(params.row);
+                    props.setUpdatedType('image');
 
                     props.setShowAddAD(true);
                   }}

@@ -20,6 +20,7 @@ const MainPageLayout = props => {
   const token = useSelector(state => state.auth.token);
   const [showAddPage, setShowAddPage] = useState(false);
   const [updatedPage, setUpdatedPage] = useState(null);
+  const [updatedType, setUpdatedType] = useState(null);
   const [showReviews, setShowReviews] = useState(false);
   const [overlay, setOverlay] = useState(false);
   const [itemId, setItemId] = useState('');
@@ -75,6 +76,7 @@ const MainPageLayout = props => {
           setShowAddPage={setShowAddPage}
           showAddHandler={showAddHandler}
           setUpdatedPage={setUpdatedPage}
+          setUpdatedType={setUpdatedType}
           setShowReviews={showReviewsHandler}
           updatedPage={updatedPage}
           setOverlay={setOverlay}
@@ -137,6 +139,7 @@ const MainPageLayout = props => {
               token={token}
               updatedPage={updatedPage}
               goBackHandler={goBackHandler}
+              updatedType={updatedType}
             />
           )}
           {showReviews && (

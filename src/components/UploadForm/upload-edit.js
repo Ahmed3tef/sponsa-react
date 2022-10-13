@@ -8,8 +8,43 @@ export default function uploadAndEdit(
   fd,
   config,
   goBackHandler,
-  msg
+  msg,
+  updatedType = null
 ) {
+  if (updatedType === 'image') {
+    const updateImagesPromise = axios
+      .patch(`${APIBase}${route}/updateimage`, fd, config)
+      .then(res => {
+        console.log(res);
+        goBackHandler();
+      })
+      .catch(err => console.log(err));
+
+    toast.promise(updateImagesPromise, {
+      pending: `Updating your ${msg}
+      please wait a second`,
+      success: `${msg} updated successfully 👌`,
+      error: 'upload failed ⛔',
+    });
+    return;
+  }
+  if (updatedType === 'text') {
+    const updateImagesPromise = axios
+      .patch(`${APIBase}${route}/updateimage`, fd, config)
+      .then(res => {
+        console.log(res);
+        goBackHandler();
+      })
+      .catch(err => console.log(err));
+
+    toast.promise(updateImagesPromise, {
+      pending: `Updating your ${msg}
+      please wait a second`,
+      success: `${msg} updated successfully 👌`,
+      error: 'upload failed ⛔',
+    });
+    return;
+  }
   if (updatedPage) {
     const updatePromise = axios
       .patch(`${APIBase}${route}/update`, fd, config)

@@ -10,7 +10,8 @@ import { loadCategories } from '../../store/reducers/categories';
 import { loadSubCategories } from '../../store/reducers/subCategories';
 import LargeText from './LargeText';
 
-const UploadProduct = ({ updatedPage, goBackHandler, token }) => {
+const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
+  const token = useSelector(state => state.auth.token);
   // IMAGES
   const [img, setImg] = useState(
     updatedPage ? updatedPage.images[0].imageUrl : ''
@@ -116,24 +117,13 @@ const UploadProduct = ({ updatedPage, goBackHandler, token }) => {
     let prices = [];
     let descriptionsArabic = [];
     let descriptionsEnglish = [];
-    // {currentPrice:price, size:amount}
-    fd.append('image', img);
-    fd.append('alt', 'product');
-    console.log(catId, subCatId);
-    fd.append('catId', catId);
-    fd.append('subcatId', subCatId);
 
-    fd.append('arabicName', arabicName);
-    fd.append('englishName', englishName);
-
-    fd.append('arabicHeadText', arabicHeadText);
-    fd.append('englishHeadText', englishHeadText);
-
-    fd.append('arabicSubText', arabicSubText);
-    fd.append('englishSubText', englishSubText);
-
-    fd.append('arabicHintText', arabicHintText);
-    fd.append('englishHintText', englishHintText);
+    const config = {
+      headers: {
+        authorization: token,
+      },
+      params: { id: updatedPage ? updatedPage.id : '' },
+    };
 
     if (amount && price)
       prices.push({ currentPrice: price, size: amount, discountPrice: 0 });
@@ -169,49 +159,108 @@ const UploadProduct = ({ updatedPage, goBackHandler, token }) => {
         description: finalDescList,
       });
     }
+    if (updatedType === 'image') {
+      let images = [];
 
-    descriptionsEnglish.forEach((e, i) => {
-      fd.append(`englishLargeDescription[${i}][headTitle]`, e.headTitle);
-      fd.append(`englishLargeDescription[${i}][description][0]`, e.description);
-    });
-    descriptionsArabic.forEach((e, i) => {
-      fd.append(`arabicLargeDescription[${i}][headTitle]`, e.headTitle);
-      fd.append(`arabicLargeDescription[${i}][description][0]`, e.description);
-    });
-    prices.forEach((e, i) => {
-      fd.append(`prices[${i}][discountPrice]`, e.discountPrice);
-      fd.append(`prices[${i}][currentPrice]`, e.currentPrice);
-      fd.append(`prices[${i}][size]`, e.size);
-    });
+      images.forEach((e, i) => {
+        // fd.append(`image[${i}]`, e.discountPrice);
+        // fd.append(`image[${i}]`, e.currentPrice);
+        // fd.append(`image[${i}][size]`, e.size);
+        // fd.append(`image[${i}][index]`);
+      });
+      fd.append('productId', updatedPage.id);
+    }
+    if (updatedType === 'text') {
+      let data = {
+        productId: updatedPage ? updatedPage.id : '',
+        catId,
+        subcatId: subCatId,
+        arabicName,
+        englishName,
+        alt: 'new alt',
+        prices,
 
-    // descriptionsEnglish.forEach((e, i) => {
-    //     fd.append(`arabicLargeDescription[${i}]`, e);
-    // })
+        arabicHeadText,
+        englishHeadText,
+        arabicSubText,
+        englishSubText,
+        arabicHintText,
+        englishHintText,
+        englishLargeDescription: descriptionsEnglish,
+        arabicLargeDescription: descriptionsArabic,
+        arabicAdditionalDesc: [
+          {
+            key: 'العرض',
+            value: arabicAdditionalDesc,
+          },
+        ],
+        englishAdditionalDesc: [
+          {
+            key: 'width',
+            value: englishAdditionalDesc,
+          },
+        ],
+        status: 1,
+      };
+      uploadAndEdit(
+        updatedPage,
+        'product',
+        data,
+        config,
+        goBackHandler,
+        'Product',
+        updatedType
+      );
+      //
+    } else {
+      fd.append('image', img);
+      fd.append('alt', 'product');
+      console.log(catId, subCatId);
+      fd.append('catId', catId);
+      fd.append('subcatId', subCatId);
 
-    // fd.append('englishLargeDescription[0]', descriptionsEnglish);
-    // fd.append('arabicAdditionalDesc', arabicAdditionalDesc);
+      fd.append('arabicName', arabicName);
+      fd.append('englishName', englishName);
 
-    // arabicAdditionalDesc.forEach(function(e, index) {
-    //   fd.append('arabicAdditionalDesc[$index]', e);
-    // });
-    // fd.append('arabicAdditionalDesc', {
-    //   key: 'size',
-    //   value: arabicAdditionalDesc,
-    // });
-    // fd.append('englishAdditionalDesc', {
-    //   key: 'size',
-    //   value: descriptionsEnglish,
-    // });
-    // let params
+      fd.append('arabicHeadText', arabicHeadText);
+      fd.append('englishHeadText', englishHeadText);
 
-    const config = {
-      headers: {
-        authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiMSIsInVzZXJJZCI6IjYzMjc0ZjUwNmFjNTAwOTE4ZDFhMTA1MCIsInN0YXR1cyI6MSwiaWF0IjoxNjY1NDk2MjkwLCJleHAiOjE2NjgwODgyOTB9.UMgfJrZ4uobLUYj6vs2XQsTQmDj2JaVwDG_9UTYbOBo',
-      },
-      params: { id: updatedPage ? updatedPage.id : '' },
-    };
-    uploadAndEdit(updatedPage, 'product', fd, config, goBackHandler, 'Product');
+      fd.append('arabicSubText', arabicSubText);
+      fd.append('englishSubText', englishSubText);
+
+      fd.append('arabicHintText', arabicHintText);
+      fd.append('englishHintText', englishHintText);
+
+      descriptionsEnglish.forEach((e, i) => {
+        fd.append(`englishLargeDescription[${i}][headTitle]`, e.headTitle);
+        fd.append(
+          `englishLargeDescription[${i}][description][0]`,
+          e.description
+        );
+      });
+      descriptionsArabic.forEach((e, i) => {
+        fd.append(`arabicLargeDescription[${i}][headTitle]`, e.headTitle);
+        fd.append(
+          `arabicLargeDescription[${i}][description][0]`,
+          e.description
+        );
+      });
+      prices.forEach((e, i) => {
+        fd.append(`prices[${i}][discountPrice]`, e.discountPrice);
+        fd.append(`prices[${i}][currentPrice]`, e.currentPrice);
+        fd.append(`prices[${i}][size]`, e.size);
+      });
+    }
+
+    uploadAndEdit(
+      updatedPage,
+      'product',
+      fd,
+      config,
+      goBackHandler,
+      'Product',
+      updatedType
+    );
     console.log(fd);
   };
 
