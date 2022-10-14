@@ -511,6 +511,92 @@ const MainTable = props => {
         },
       },
     ];
+  } else if (props.path === 'subCategories') {
+    cols = [
+      {
+        field: 'position',
+        headerName: '#',
+        width: 30,
+        headerAlign: 'center',
+        align: 'center',
+      },
+      {
+        field: 'imgUrl',
+        headerName: props.image.title,
+        width: props.image.width,
+        sortable: false,
+
+        headerAlign: 'center',
+        align: 'center',
+        renderCell: params => {
+          return (
+            <div className='t-img'>
+              <img
+                src={`${APIBase}${params.row.imgUrl}`}
+                alt={params.row.imgAlt}
+              />
+            </div>
+          );
+        },
+      },
+      {
+        field: 'englishName',
+        headerName: props.englishName.title,
+        width: props.englishName.width,
+        width: 150,
+        headerAlign: 'center',
+        align: 'center',
+      },
+      {
+        field: 'arabicName',
+        headerName: props.arabicName.title,
+        headerAlign: 'center',
+        width: 150,
+        align: 'center',
+        width: props.arabicName.width,
+      },
+      {
+        field: 'catName',
+        headerName: 'Main Category   الفئة الرئيسية',
+        width: 250,
+        headerAlign: 'center',
+        align: 'center',
+        width: props.arabicName.width,
+      },
+
+      {
+        field: 'Actions',
+        headerName: 'Actions  الإجراءات',
+        width: 180,
+        headerAlign: 'center',
+        align: 'center',
+        sortable: false,
+        renderCell: params => {
+          return (
+            <div className='e-d-icons'>
+              <img
+                src={editIcon}
+                alt='edit icon'
+                className='pe-4'
+                onClick={() => {
+                  props.setUpdatedPage(params.row);
+
+                  props.setShowAddAD(true);
+                }}
+              />
+              <img
+                src={deleteIcon}
+                alt='delete icon'
+                onClick={() => {
+                  props.setOverlay(true);
+                  props.setItemId(params.row.id);
+                }}
+              />
+            </div>
+          );
+        },
+      },
+    ];
   } else {
     cols = [
       {

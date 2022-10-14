@@ -2,12 +2,15 @@ import React, { useEffect, useState } from 'react';
 import UploadImg from './UploadImg';
 import './UploadForm.css';
 import MiniText from './MiniText';
-import { APIBase } from '../../store/reducers/api';
+
 import uploadAndEdit from './upload-edit';
 import Selector from './Selector';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadCategories } from '../../store/reducers/categories';
-import { loadSubCategories } from '../../store/reducers/subCategories';
+import {
+  loadSubCategories,
+  loadSubCategoriesWithId,
+} from '../../store/reducers/subCategories';
 import LargeText from './LargeText';
 
 const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
@@ -106,9 +109,14 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
 
   useEffect(() => {
     dispatch(loadCategories());
-    dispatch(loadSubCategories());
-  }, []);
-
+    if (catId) dispatch(loadSubCategories());
+    else {
+      dispatch(loadSubCategoriesWithId(catId));
+    }
+  }, [catId]);
+  // useState(() => {
+  //   dispatch(loadSubCategoriesWithId(catId));
+  // }, [catId]);
   const categories = useSelector(state => state.categories.categories);
   const Subcategories = useSelector(state => state.subCategories.subCategories);
 
@@ -119,13 +127,11 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
     let descriptionsArabic = [];
     let descriptionsEnglish = [];
     let images = [];
-    const productId = updatedPage ? updatedPage.id : '';
 
     const config = {
       headers: {
         authorization: token,
       },
-      // params: { id: productId },
     };
     // put images date in an array
     if (img) images.push(img);
@@ -232,10 +238,13 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
       //
     } else {
       // fd.append('image', img);
-      images.forEach((e, i) => {
-        fd.append(`image[${i}]`, e);
-      });
-
+      // images.forEach((e, i) => {
+      //   fd.append(`image[${i}]`, e);
+      // });
+      if (img) fd.append('image', img);
+      if (img2) fd.append('image', img2);
+      if (img3) fd.append('image', img3);
+      if (img4) fd.append('image', img4);
       fd.append('alt', 'product');
       console.log(catId, subCatId);
       fd.append('catId', catId);
@@ -283,7 +292,6 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
       'Product',
       updatedType
     );
-    console.log(fd);
   };
 
   return (
