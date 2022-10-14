@@ -68,7 +68,7 @@ const Login = () => {
             <div
               className='pass-eye'
               onClick={() => setShowPassword(!showPassword)}>
-              {!showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
+              {!showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
             </div>
           </div>
           <div className='login__remember'>
