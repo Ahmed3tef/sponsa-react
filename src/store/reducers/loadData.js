@@ -37,7 +37,7 @@ export async function loadDataWithId(thunkAPI, path, id) {
       return err.response.data;
     });
 }
-export async function loadDataWithParams(thunkAPI, path, params) {
+export async function loadDataWithParams(thunkAPI, path, params, data) {
   const config = {
     headers: {
       authorization: token,
@@ -45,7 +45,7 @@ export async function loadDataWithParams(thunkAPI, path, params) {
     params,
   };
   return axios
-    .post(`${APIBase}${path}`, null, config, thunkAPI)
+    .post(`${APIBase}${path}`, data, config, thunkAPI)
     .then(res => {
       return res.data;
     })

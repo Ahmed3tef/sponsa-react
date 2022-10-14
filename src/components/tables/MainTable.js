@@ -554,6 +554,13 @@ const MainTable = props => {
         align: 'center',
         width: props.arabicName.width,
       },
+      {
+        field: 'catName',
+        headerName: props.arabicName.title,
+        headerAlign: 'center',
+        align: 'center',
+        width: props.arabicName.width,
+      },
 
       {
         field: 'englishDesc',

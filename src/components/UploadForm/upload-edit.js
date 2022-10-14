@@ -9,7 +9,7 @@ export default function uploadAndEdit(
   config,
   goBackHandler,
   msg,
-  updatedType = null
+  updatedType
 ) {
   if (updatedType === 'image') {
     const updateImagesPromise = axios
@@ -30,7 +30,7 @@ export default function uploadAndEdit(
   }
   if (updatedType === 'text') {
     const updateImagesPromise = axios
-      .patch(`${APIBase}${route}/updateimage`, fd, config)
+      .patch(`${APIBase}${route}/update`, fd, config)
       .then(res => {
         console.log(res);
         goBackHandler();

@@ -11,12 +11,11 @@ const UploadProfile = () => {
     dispatch(loadAdmin());
   }, []);
   const adminData = useSelector(state => state.admin.admin);
+  const token = useSelector(state => state.auth.token);
   const [name, setName] = useState(adminData.name);
   const [phone, setPhone] = useState(adminData.phone);
   const [img, setImg] = useState(adminData.imageUrl);
   const [password, setPassword] = useState('');
-
-  let token = localStorage.getItem('token');
 
   const uploadADHandler = () => {
     const fd = new FormData();

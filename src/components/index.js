@@ -12,4 +12,6 @@ export { default as Selector } from './UploadForm/Selector';
 export { default as Ratings } from './icons/Ratings';
 export { default as Chart } from './Charts/Chart';
 export { default as ReportsLayout } from './Reports/ReportsLayout';
+export { default as ReportsDates } from './Reports/ReportsDates';
 export { default as Search } from './search/Search';
+export { default as DatePick } from './DatePicker/DatePicker';

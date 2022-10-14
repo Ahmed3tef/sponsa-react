@@ -19,6 +19,7 @@ const SubCategories = () => {
       image={{ title: 'Subcategory Photo  صورة الفئة الفرعية', width: 320 }}
       arabicName={{ title: 'عنوان الفئة الفرعية', width: 300 }}
       englishName={{ title: 'Subcategory Title', width: 300 }}
+      desc
     />
   );
 };

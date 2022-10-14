@@ -1,12 +1,16 @@
-import React from 'react';
-import { ReportsLayout } from '../../components';
+import React, { useState } from 'react';
+import { Container } from 'react-bootstrap';
+import { ReportsDates, ReportsLayout } from '../../components';
 
 const Reports = () => {
+  // const [filteredData, setFilteredData] = useState(null);
+  // const [action, setAction] = useState(null);
+  const [range, setRange] = useState(null);
   return (
-    <>
-      <h1 className='reports__heading'>Reports</h1>
-      <ReportsLayout />
-    </>
+    <Container fluid>
+      <ReportsDates setRange={setRange} />
+      <ReportsLayout range={range} />
+    </Container>
   );
 };
 

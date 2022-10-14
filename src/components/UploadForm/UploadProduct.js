@@ -112,19 +112,28 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
   const categories = useSelector(state => state.categories.categories);
   const Subcategories = useSelector(state => state.subCategories.subCategories);
 
+  console.log(updatedType);
   const uploadADHandler = () => {
     const fd = new FormData();
     let prices = [];
     let descriptionsArabic = [];
     let descriptionsEnglish = [];
+    let images = [];
+    const productId = updatedPage ? updatedPage.id : '';
 
     const config = {
       headers: {
         authorization: token,
       },
-      params: { id: updatedPage ? updatedPage.id : '' },
+      // params: { id: productId },
     };
+    // put images date in an array
+    if (img) images.push(img);
+    if (img2) images.push(img2);
+    if (img3) images.push(img3);
+    if (img4) images.push(img4);
 
+    // put prices
     if (amount && price)
       prices.push({ currentPrice: price, size: amount, discountPrice: 0 });
     if (amount2 && price2)
@@ -146,6 +155,7 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
         discountPrice: 0,
       });
 
+    // put description
     if (arabicDescTitle && arabicDesc)
       descriptionsArabic.push({
         headTitle: arabicDescTitle,
@@ -159,16 +169,23 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
         description: finalDescList,
       });
     }
-    if (updatedType === 'image') {
-      let images = [];
 
+    if (updatedType === 'image') {
       images.forEach((e, i) => {
-        // fd.append(`image[${i}]`, e.discountPrice);
-        // fd.append(`image[${i}]`, e.currentPrice);
-        // fd.append(`image[${i}][size]`, e.size);
-        // fd.append(`image[${i}][index]`);
+        fd.append(`image[${i}][image]`, e.image);
+        fd.append(`image[${i}][productId]`, e.productId);
+        fd.append(`image[${i}][index]`, i);
       });
-      fd.append('productId', updatedPage.id);
+      uploadAndEdit(
+        updatedPage,
+        'product',
+        fd,
+        config,
+        goBackHandler,
+        'Product Images',
+        updatedType
+      );
+      return;
     }
     if (updatedType === 'text') {
       let data = {
@@ -211,9 +228,14 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
         'Product',
         updatedType
       );
+      return;
       //
     } else {
-      fd.append('image', img);
+      // fd.append('image', img);
+      images.forEach((e, i) => {
+        fd.append(`image[${i}]`, e);
+      });
+
       fd.append('alt', 'product');
       console.log(catId, subCatId);
       fd.append('catId', catId);

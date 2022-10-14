@@ -30,14 +30,23 @@ const renderCustomizedLabel = ({
   );
 };
 
-const Chart = ({ data }) => {
-  const chartData = data.map(p => {
-    const {
-      name: { english },
-      count,
-    } = p;
-    return { name: english, value: count };
-  });
+const Chart = ({ data, path }) => {
+  let chartData;
+  if (path === 'products') {
+    chartData = data.map(p => {
+      const {
+        name: { english },
+        count,
+      } = p;
+      return { name: english, value: count };
+    });
+  }
+  if (path === 'customers') {
+    chartData = data.map(p => {
+      const { email, count } = p;
+      return { name: email, value: count };
+    });
+  }
 
   // const data = [
   //   { name: 'Group A', value: 400 },
