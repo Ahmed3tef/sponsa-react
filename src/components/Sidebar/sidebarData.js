@@ -13,7 +13,7 @@ import React from 'react';
 export const sidebarData = [
   { title: 'Home', icon: <HiHome />, tab: 'home' },
   { title: 'Profile', icon: <ImUser />, tab: 'profile' },
-  { title: 'ADs', icon: <GoChecklist />, tab: 'ads' },
+  { title: 'Advertisements', icon: <GoChecklist />, tab: 'ads' },
   { title: 'Categories', icon: <IoGrid />, tab: 'categories' },
   {
     title: 'Subcategories',

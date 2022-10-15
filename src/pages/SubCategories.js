@@ -16,9 +16,9 @@ const SubCategories = () => {
       action={loadSubCategories()}
       title='Active SubCategories'
       addIcon={addIcon}
-      image={{ title: 'Subcategory Photo  صورة الفئة الفرعية', width: 320 }}
-      arabicName={{ title: 'عنوان الفئة الفرعية', width: 300 }}
-      englishName={{ title: 'Subcategory Title', width: 300 }}
+      image={{ title: 'Photo  الصورة', width: 320 }}
+      arabicName={{ title: 'العنوان', width: 300 }}
+      englishName={{ title: 'Title', width: 300 }}
       desc
     />
   );

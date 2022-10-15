@@ -11,70 +11,150 @@ export default function uploadAndEdit(
   msg,
   updatedType
 ) {
+  const id = toast.loading('please wait a second...');
+
   if (updatedType === 'image') {
-    const updateImagesPromise = axios
+    axios
       .patch(`${APIBase}${route}/updateimage`, fd, config)
       .then(res => {
-        console.log(res);
+        toast.update(id, {
+          render: `${msg} updated successfully 👌`,
+          type: 'success',
+          isLoading: false,
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
         goBackHandler();
       })
-      .catch(err => console.log(err));
-
-    toast.promise(updateImagesPromise, {
-      pending: `Updating your ${msg}
-      please wait a second`,
-      success: `${msg} updated successfully 👌`,
-      error: 'upload failed ⛔',
-    });
+      .catch(err => {
+        const errMsg = err.response.data.message;
+        toast.update(id, {
+          render: `${errMsg} ⛔`,
+          type: 'error',
+          isLoading: false,
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      });
     return;
   }
   if (updatedType === 'text') {
-    const updateImagesPromise = axios
+    axios
       .patch(`${APIBase}${route}/update`, fd, config)
       .then(res => {
-        console.log(res);
+        toast.update(id, {
+          render: `${msg} updated successfully 👌`,
+          type: 'success',
+          isLoading: false,
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
         goBackHandler();
       })
-      .catch(err => console.log(err));
-
-    toast.promise(updateImagesPromise, {
-      pending: `Updating your ${msg}
-      please wait a second`,
-      success: `${msg} updated successfully 👌`,
-      error: 'upload failed ⛔',
-    });
+      .catch(err => {
+        const errMsg = err.response.data.message;
+        toast.update(id, {
+          render: `${errMsg} ⛔`,
+          type: 'error',
+          isLoading: false,
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      });
     return;
   }
   if (updatedPage) {
-    const updatePromise = axios
+    axios
       .patch(`${APIBase}${route}/update`, fd, config)
       .then(res => {
-        console.log(res);
-        if (goBackHandler) {
-          goBackHandler();
-        }
+        toast.update(id, {
+          render: `${msg} updated successfully 👌`,
+          type: 'success',
+          isLoading: false,
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        goBackHandler();
       })
-      .catch(err => console.log(err));
-    toast.promise(updatePromise, {
-      pending: `Updating your ${msg} 
-          please wait a second`,
-      success: `${msg} updated successfully 👌`,
-      error: 'Update failed! ⛔',
-    });
+      .catch(err => {
+        const errMsg = err.response.data.message;
+        toast.update(id, {
+          render: `${errMsg} ⛔`,
+          type: 'error',
+          isLoading: false,
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      });
     return;
   }
-  const postPromise = axios
-    .post(`${APIBase}${route}/create`, fd, config)
-    .then(res => {
-      console.log(res);
-      goBackHandler();
-    })
-    .catch(err => console.log(err));
+  if (!updatedType && !updatedPage) {
+    axios
+      .post(`${APIBase}${route}/create`, fd, config)
+      .then(res => {
+        toast.update(id, {
+          render: `${msg} uploaded successfully 👌`,
+          type: 'success',
+          isLoading: false,
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        goBackHandler();
+      })
+      .catch(err => {
+        const errMsg = err.response.data.message;
+        toast.update(id, {
+          render: `${errMsg} ⛔`,
+          type: 'error',
+          isLoading: false,
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      });
+    // const postPromise = axios
+    //   .post(`${APIBase}${route}/create`, fd, config)
+    //   .then(res => {
+    //     console.log(res);
 
-  toast.promise(postPromise, {
-    pending: `Uploading your ${msg} 
-      please wait a second`,
-    success: `${msg} uploaded successfully 👌`,
-    error: 'upload failed ⛔',
-  });
+    //     goBackHandler();
+    //   })
+    //   .catch(err => {
+    //     const errMsg = err.response.data.message;
+    //     console.log(errMsg);
+    //     toast.error(errMsg);
+    //     return;
+    //   });
+    // if (postPromise) {
+    //   toast.promise(postPromise, {
+    //     pending: `Uploading your ${msg}
+    //       please wait a second`,
+    //     error: 'upload failed ⛔',
+    //     success: `${msg} uploaded successfully 👌`,
+    //   });
+    // }
+  }
 }

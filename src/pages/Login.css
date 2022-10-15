@@ -8,7 +8,13 @@
   justify-content: flex-start;
   align-items: center;
 }
-
+.login-err {
+  background-color: aliceblue;
+  padding: 1rem 4rem;
+  color: red;
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+}
 .login__form {
   max-width: 70rem;
   padding: 6rem;

@@ -35,10 +35,11 @@ export const subCategoriesSlice = createSlice({
           return;
         }
         let data = payload.data.map((obj, i) => {
+          // console.log(obj.data._id);
           return {
             id: obj.data._id,
             catName: obj.catName,
-
+            key: obj.data._id,
             englishName: obj.data.names.english,
             arabicName: obj.data.names.arabic,
             imgUrl: obj.data.image.imageUrl,
@@ -47,7 +48,7 @@ export const subCategoriesSlice = createSlice({
             position: i + 1,
           };
         });
-
+        // console.log(data);
         state.subCategories = data;
         state.isLoading = false;
         state.error = null;
@@ -56,7 +57,7 @@ export const subCategoriesSlice = createSlice({
     [loadSubCategories.rejected]: (state, action) => {
       state.isLoading = false;
       state.subCategories = null;
-      state.error = action.payload;
+      state.error = action.payload.response.data.message;
     },
     [loadSubCategoriesWithId.pending]: (state, action) => {
       state.subCategories = [];
@@ -76,7 +77,7 @@ export const subCategoriesSlice = createSlice({
           return {
             id: obj.data._id,
             catName: obj.catName,
-
+            key: obj.data._id,
             englishName: obj.data.names.english,
             arabicName: obj.data.names.arabic,
             imgUrl: obj.data.image.imageUrl,
@@ -85,7 +86,7 @@ export const subCategoriesSlice = createSlice({
             position: i + 1,
           };
         });
-
+        console.log(data.id);
         state.subCategories = data;
         state.isLoading = false;
         state.error = null;
@@ -94,7 +95,7 @@ export const subCategoriesSlice = createSlice({
     [loadSubCategoriesWithId.rejected]: (state, action) => {
       state.isLoading = false;
       state.subCategories = null;
-      state.error = action.payload;
+      state.error = action.payload.response.data.message;
     },
   },
 });

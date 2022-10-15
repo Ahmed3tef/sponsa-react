@@ -4,13 +4,19 @@ import { Container } from 'react-bootstrap';
 import { MainTable, Search } from '../';
 import './MainTablePage.css';
 const MainTablePage = props => {
+  const titleMB = props.path === 'orders' ? '0' : '-10rem';
+  const titleMT = props.path === 'orders' ? '6rem' : '0';
   return (
     <Container>
       <div className='table__header'>
-        <div className='table-header'>
+        <div
+          className='table-header'
+          style={{ marginBottom: titleMB, marginTop: titleMT }}>
           <span>{props.title}</span>
         </div>
-        <Search route={props.route} title={props.path} />
+        {props.path === 'products' && (
+          <Search route={props.route} title={props.path} />
+        )}
         {props.addIcon && (
           <div className='add-icon ' onClick={props.showAddHandler}>
             <img src={props.addIcon} alt='add icon' />

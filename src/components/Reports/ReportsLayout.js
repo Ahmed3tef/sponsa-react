@@ -38,7 +38,7 @@ const ReportsLayout = props => {
   return (
     <Container fluid>
       <Row className='reports__main '>
-        <h2 className='reports__title'>September Reports</h2>
+        {props.title && <h2 className='reports__title'>September Reports</h2>}
         <Col sm={3} className='report'>
           <div
             className='reports__report'

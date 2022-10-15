@@ -17,7 +17,8 @@ import { APIBase } from '../../store/reducers/api';
 import { Reviews } from '../../pages';
 
 const MainPageLayout = props => {
-  const token = useSelector(state => state.auth.token);
+  // const token = useSelector(state => state.auth.token);
+  const token = localStorage.getItem('token');
   const [showAddPage, setShowAddPage] = useState(false);
   const [updatedPage, setUpdatedPage] = useState(null);
   const [updatedType, setUpdatedType] = useState(null);
@@ -45,7 +46,7 @@ const MainPageLayout = props => {
   useEffect(() => {
     dispatch(props.action);
   }, []);
-
+  // console.log(token);
   const deleteHandler = () => {
     const fd = new FormData();
     fd.append('status', 0);
@@ -53,10 +54,24 @@ const MainPageLayout = props => {
       headers: {
         authorization: token,
       },
-      params: { id: itemId },
+      params: { id: itemId ? itemId : '' },
     };
     if (props.route === `ads`) {
       axios.delete(`${APIBase}${props.route}`, config);
+    }
+    if (props.route === `product`) {
+      console.log('token', token);
+      axios
+        .patch(
+          `${APIBase}${props.route}/update`,
+          { productId: itemId ? itemId : '', status: 0 },
+          {
+            headers: {
+              authorization: token ? token : '',
+            },
+          }
+        )
+        .catch(err => console.log(err));
     } else {
       axios.patch(`${APIBase}${props.route}/update`, fd, config);
     }

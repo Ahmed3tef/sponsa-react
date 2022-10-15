@@ -32,9 +32,11 @@ export const productsSlice = createSlice({
           return;
         }
         let data = payload.data.map((obj, i) => {
+          // console.log(obj._id);
           return {
             id: obj._id,
             position: 1 + i,
+            key: obj._id,
             // arabicName: obj.names.arabic,
             // englishName: obj.names.english,
             name: obj.names,

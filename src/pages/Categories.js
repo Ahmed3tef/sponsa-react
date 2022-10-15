@@ -15,9 +15,9 @@ const Categories = () => {
       action={loadCategories()}
       title='Active Categories'
       addIcon={addIcon}
-      image={{ title: 'AD Photo  صورة الإعلان', width: 400 }}
-      arabicName={{ title: 'عنوان الإعلان', width: 300 }}
-      englishName={{ title: 'AD Title', width: 300 }}
+      image={{ title: 'Photo  الصورة ', width: 400 }}
+      arabicName={{ title: 'العنوان', width: 300 }}
+      englishName={{ title: 'Title', width: 300 }}
     />
   );
 };

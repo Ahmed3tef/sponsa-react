@@ -120,7 +120,7 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
   const categories = useSelector(state => state.categories.categories);
   const Subcategories = useSelector(state => state.subCategories.subCategories);
 
-  console.log(updatedType);
+  // console.log(updatedType);
   const uploadADHandler = () => {
     const fd = new FormData();
     let prices = [];

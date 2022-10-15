@@ -19,13 +19,17 @@ const Selector = props => {
         onChange={changeIdHandler}
         value={isLoading ? '' : props.id}
         placeholder=''>
-        <option value='' disabled defaultValue>
+        <option
+          value=''
+          disabled
+          defaultValue
+          key={Math.round(Math.random() * 10000)}>
           Select the main category for the subcategory ...
         </option>
         {props.data.map(el => {
           // console.log(el);
           return (
-            <option value={el.id}>
+            <option value={el.id} key={el.id}>
               {`${el.englishName} - ${el.arabicName}`}
             </option>
           );

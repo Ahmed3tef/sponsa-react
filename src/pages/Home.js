@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
       <h1 className='reports__heading'>Welcome , Hatem El-Shawaf.</h1>
-      <ReportsLayout />
+      <ReportsLayout title={true} />
     </>
   );
 };

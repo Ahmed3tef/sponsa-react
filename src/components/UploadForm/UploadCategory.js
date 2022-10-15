@@ -4,11 +4,13 @@ import './UploadForm.css';
 import MiniText from './MiniText';
 import { APIBase } from '../../store/reducers/api';
 import uploadAndEdit from './upload-edit';
+import { useSelector } from 'react-redux';
 
 const UploadCategory = ({ updatedPage, goBackHandler, token }) => {
   const [arabicName, setArabicName] = useState(
     updatedPage ? updatedPage.arabicName : ''
   );
+  const error = useSelector(state => state.subCategories.error);
   const [englishName, setEnglishName] = useState(
     updatedPage ? updatedPage.englishName : ''
   );
@@ -16,7 +18,7 @@ const UploadCategory = ({ updatedPage, goBackHandler, token }) => {
     updatedPage ? APIBase + updatedPage.imgUrl : ''
   );
   const [imgAlt, setImgAlt] = useState(updatedPage ? updatedPage.imgAlt : '');
-  
+
   const uploadADHandler = () => {
     const fd = new FormData();
     fd.append('image', img);
@@ -28,7 +30,7 @@ const UploadCategory = ({ updatedPage, goBackHandler, token }) => {
       headers: {
         authorization: token,
       },
-      params:{id:updatedPage.id},
+      params: { id: updatedPage ? updatedPage.id : '' },
     };
     uploadAndEdit(updatedPage, 'cat', fd, config, goBackHandler, 'Category');
   };

@@ -18,7 +18,7 @@ import axios from 'axios';
 const MainTable = props => {
   const dispatch = useDispatch();
   // const navigate = useNavigate();
-
+  let height = 730;
   // console.log(props);
   const config = {
     headers: {
@@ -30,12 +30,14 @@ const MainTable = props => {
 
   if (props.path === 'products') {
     cols = [
+      { field: 'id', hide: true },
       {
         field: 'position',
         headerName: '#',
         width: 30,
         headerAlign: 'center',
         align: 'center',
+        sortable: false,
       },
       {
         field: 'imgUrl',
@@ -217,6 +219,7 @@ const MainTable = props => {
     ];
   } else if (props.path === 'orders') {
     cols = [
+      { field: 'id', hide: true },
       {
         field: 'userInfo',
         headerName: `Customer Info بيانات العميل`,
@@ -468,18 +471,41 @@ const MainTable = props => {
           );
         },
         renderCell: params => {
+          const id = params.row.id;
+          let { orderStatus } = params.row;
           return (
             <div className='order-actions'>
-              <img
-                src={acceptOrderIcon}
-                alt='edit icon'
-                className='mb-3'
-                onClick={() => {
-                  props.setUpdatedPage(params.row);
+              {orderStatus !== 4 && (
+                <img
+                  src={acceptOrderIcon}
+                  alt='edit icon'
+                  className='mb-3'
+                  onClick={() => {
+                    if (orderStatus === 2) {
+                      orderStatus = 4;
+                    }
+                    if (orderStatus === 1) {
+                      orderStatus = 2;
+                    }
+                    if (orderStatus === 3) {
+                      orderStatus = 1;
+                    }
 
-                  props.setShowAddAD(true);
-                }}
-              />
+                    axios
+                      .patch(`${APIBase}order/updatestatus`, null, {
+                        headers: {
+                          authorization: props.token,
+                        },
+                        params: {
+                          id,
+                          orderStatus,
+                        },
+                      })
+                      .then(res => dispatch(props.action))
+                      .catch(err => console.log(err.response.data));
+                  }}
+                />
+              )}
               <img
                 src={rejectOrderIcon}
                 alt='delete icon'
@@ -513,12 +539,14 @@ const MainTable = props => {
     ];
   } else if (props.path === 'subCategories') {
     cols = [
+      { field: 'id', hide: true },
       {
         field: 'position',
         headerName: '#',
         width: 30,
         headerAlign: 'center',
         align: 'center',
+        sortable: false,
       },
       {
         field: 'imgUrl',
@@ -599,12 +627,14 @@ const MainTable = props => {
     ];
   } else {
     cols = [
+      { field: 'id', hide: true },
       {
         field: 'position',
         headerName: '#',
         width: 30,
         headerAlign: 'center',
         align: 'center',
+        sortable: false,
       },
       {
         field: 'imgUrl',
@@ -694,7 +724,7 @@ const MainTable = props => {
   }
 
   return (
-    <Box sx={{ height: 730, width: '100%' }}>
+    <Box sx={{ height: height, width: '100%' }}>
       {/* {props.product && (
         <DataGrid
           rows={props.data}

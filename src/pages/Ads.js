@@ -16,11 +16,11 @@ const Ads = () => {
       action={loadAds()}
       title='Active ADs'
       addIcon={addADIcon}
-      image={{ title: 'AD Photo  صورة الإعلان', width: 260 }}
-      arabicName={{ title: 'عنوان الإعلان', width: 130 }}
-      englishName={{ title: 'AD Title', width: 130 }}
-      arabicDesc={{ title: 'AD Description', width: 270, hide: false }}
-      englishDesc={{ title: 'وصف الإعلان', width: 270, hide: false }}
+      image={{ title: 'Photo  الصورة', width: 260 }}
+      arabicName={{ title: 'العنوان', width: 130 }}
+      englishName={{ title: 'Title', width: 130 }}
+      arabicDesc={{ title: 'Description', width: 270, hide: false }}
+      englishDesc={{ title: 'الوصف', width: 270, hide: false }}
     />
   );
 };

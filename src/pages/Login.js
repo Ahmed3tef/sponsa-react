@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../store/reducers/auth';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { unwrapResult } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Login = () => {
   const rememberMeInputRef = useRef();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-
+  const [errMsg, setErrMsg] = useState('');
   const submitHandler = e => {
     e.preventDefault();
 
@@ -26,11 +27,26 @@ const Login = () => {
     dispatch(loginUser({ email, password }))
       .then(unwrapResult)
       .then(promiseResponse => {
-        console.log(promiseResponse);
+        // console.log(promiseResponse);
         if (promiseResponse.status === 1) {
           if (rememberMe) {
             localStorage.setItem('token', promiseResponse.token.token);
           }
+        }
+        if (promiseResponse.status === 0) {
+          console.log(promiseResponse.message);
+          setErrMsg(promiseResponse.message);
+          // toast.error(promiseResponse.message, {
+          //   position: 'top-right',
+
+          //   autoClose: 5000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: 'light',
+          // });
         }
       });
   };
@@ -42,6 +58,7 @@ const Login = () => {
           <img src={logoImg} alt='logo ' />
         </div>
         <form onSubmit={submitHandler}>
+          {errMsg && <p className='login-err'>{errMsg} !!!</p>}
           <div className='login__control'>
             <label htmlFor='email'>
               <img src={userIcon} alt='user' />

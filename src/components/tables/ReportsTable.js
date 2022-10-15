@@ -27,12 +27,15 @@ const ReportsTable = props => {
         width: 180,
         headerAlign: 'center',
         align: 'center',
+        sortable: false,
+        // editable: false,
       },
       {
         field: 'name',
         headerName: 'Product Name',
         width: 350,
-
+        sortable: false,
+        // disableExtendRowFullWidth: true,
         headerAlign: 'center',
         align: 'center',
         renderCell: ({ row }) => {
@@ -80,6 +83,7 @@ const ReportsTable = props => {
         width: 80,
         headerAlign: 'center',
         align: 'center',
+        sortable: false,
       },
       {
         field: 'firstName',

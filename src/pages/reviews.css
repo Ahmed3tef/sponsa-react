@@ -87,3 +87,5 @@
 .review:nth-child(2n) .review-img {
   background-color: var(--color-review-img-odd);
 }
+.reviews-notfound {
+}
