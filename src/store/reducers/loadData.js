@@ -25,7 +25,7 @@ export async function loadDataWithId(thunkAPI, path, id) {
       authorization: token,
     },
     params: {
-      id,
+      catId: id,
     },
   };
   return axios
