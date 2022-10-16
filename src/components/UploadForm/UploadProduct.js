@@ -68,8 +68,10 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
     updatedPage ? updatedPage.hintText.english : ''
   );
   const [arabicDesc, setArabicDesc] = useState(
-    updatedPage && updatedPage.arabicLargeDescription
-      ? updatedPage.arabicLargeDescription.english
+    updatedPage &&
+      updatedPage.arabicLargeDescription &&
+      updatedPage.arabicLargeDescription[0].description
+      ? updatedPage.arabicLargeDescription[0].description[0]
       : ''
   );
   const [arabicDescTitle, setArabicDescTitle] = useState(
@@ -90,20 +92,49 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
   const [arabicAdditionalDesc, setArabicAdditionalDesc] = useState('');
   const [englishAdditionalDesc, setEnglishAdditionalDesc] = useState('');
   // const [arabicAdditionalDescTitle, setArabicAdditionalDescTitle] = useState(
-  //   ''
+  //   '' arabicAdditionalDesc[] => [0]= {key: '', value:''}
   // );
   // const [englishAdditionalDescTitle, setEnglishAdditionalDescTitle] = useState(
   //   ''
   // );
   // PRICES
-  const [amount, setAmount] = useState('');
-  const [amount2, setAmount2] = useState('');
-  const [amount3, setAmount3] = useState('');
-  const [amount4, setAmount4] = useState('');
-  const [price, setPrice] = useState('');
-  const [price2, setPrice2] = useState('');
-  const [price3, setPrice3] = useState('');
-  const [price4, setPrice4] = useState('');
+  console.log(updatedPage);
+  const [amount, setAmount] = useState(
+    updatedPage && updatedPage.prices ? updatedPage.prices[0].size : ''
+  );
+  const [amount2, setAmount2] = useState(
+    updatedPage && updatedPage.prices && updatedPage.prices[1]
+      ? updatedPage.prices[1].size
+      : ''
+  );
+  const [amount3, setAmount3] = useState(
+    updatedPage && updatedPage.prices && updatedPage.prices[2]
+      ? updatedPage.prices[2].size
+      : ''
+  );
+  const [amount4, setAmount4] = useState(
+    updatedPage && updatedPage.prices && updatedPage.prices[3]
+      ? updatedPage.prices[3].size
+      : ''
+  );
+  const [price, setPrice] = useState(
+    updatedPage && updatedPage.prices ? updatedPage.prices[0].currentPrice : ''
+  );
+  const [price2, setPrice2] = useState(
+    updatedPage && updatedPage.prices && updatedPage.prices[1]
+      ? updatedPage.prices[1].currentPrice
+      : ''
+  );
+  const [price3, setPrice3] = useState(
+    updatedPage && updatedPage.prices && updatedPage.prices[2]
+      ? updatedPage.prices[2].currentPrice
+      : ''
+  );
+  const [price4, setPrice4] = useState(
+    updatedPage && updatedPage.prices && updatedPage.prices[3]
+      ? updatedPage.prices[3].currentPrice
+      : ''
+  );
 
   const dispatch = useDispatch();
 
@@ -141,7 +172,11 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
 
     // put prices
     if (amount && price)
-      prices.push({ currentPrice: price, size: amount, discountPrice: 0 });
+      prices.push({
+        currentPrice: price,
+        size: amount,
+        discountPrice: 0,
+      });
     if (amount2 && price2)
       prices.push({
         currentPrice: price2,
