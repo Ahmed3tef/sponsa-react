@@ -176,7 +176,6 @@ const MainTable = props => {
                   alt='edit icon'
                   className='pe-4'
                   onClick={() => {
-                    console.log(params.row);
                     props.setUpdatedPage(params.row);
                     props.setUpdatedType('text');
                     props.setShowAddAD(true);

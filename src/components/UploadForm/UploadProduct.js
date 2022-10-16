@@ -98,7 +98,7 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
   //   ''
   // );
   // PRICES
-  console.log(updatedPage);
+
   const [amount, setAmount] = useState(
     updatedPage && updatedPage.prices ? updatedPage.prices[0].size : ''
   );
@@ -139,11 +139,9 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log(catId);
     dispatch(loadCategories());
-    if (catId) dispatch(loadSubCategories());
-    else {
-      dispatch(loadSubCategoriesWithId(catId));
-    }
+    if (catId) dispatch(loadSubCategoriesWithId(catId));
   }, [catId]);
   // useState(() => {
   //   dispatch(loadSubCategoriesWithId(catId));
@@ -353,7 +351,7 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
                   <p>الفئة</p>
                 </>
               }
-              Id={catId}
+              id={catId}
               setId={setCatId}
               data={categories}
             />
@@ -366,7 +364,7 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
                   <p>الفئة الفرعية</p>
                 </>
               }
-              Id={subCatId}
+              id={subCatId}
               setId={setSubCatId}
               data={Subcategories}
             />

@@ -10,7 +10,6 @@ const Selector = props => {
   const changeIdHandler = e => {
     props.setId(e.target.value);
     setIsLoading(false);
-    console.log(e.target.value);
   };
   return (
     <div className='input-container custom-select'>
