@@ -13,7 +13,7 @@ export default function uploadAndEdit(
 ) {
   const id = toast.loading('please wait a second...');
 
-  if (updatedType === 'image') {
+  if (updatedPage && updatedType === 'image') {
     axios
       .patch(`${APIBase}${route}/updateimage`, fd, config)
       .then(res => {
@@ -44,7 +44,7 @@ export default function uploadAndEdit(
       });
     return;
   }
-  if (updatedType === 'text') {
+  if (updatedPage && updatedType === 'text') {
     axios
       .patch(`${APIBase}${route}/update`, fd, config)
       .then(res => {

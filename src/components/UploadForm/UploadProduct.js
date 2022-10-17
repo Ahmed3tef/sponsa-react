@@ -209,7 +209,7 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
       });
     }
 
-    if (updatedType === 'image') {
+    if (updatedPage && updatedType === 'image') {
       images.forEach((e, i) => {
         fd.append(`image[${i}][image]`, e.image);
         fd.append(`image[${i}][productId]`, e.productId);
@@ -226,7 +226,7 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
       );
       return;
     }
-    if (updatedType === 'text') {
+    if (updatedPage && updatedType === 'text') {
       let data = {
         productId: updatedPage ? updatedPage.id : '',
         catId,
@@ -316,15 +316,7 @@ const UploadProduct = ({ updatedPage, goBackHandler, updatedType }) => {
       });
     }
 
-    uploadAndEdit(
-      updatedPage,
-      'product',
-      fd,
-      config,
-      goBackHandler,
-      'Product',
-      updatedType
-    );
+    uploadAndEdit(null, 'product', fd, config, goBackHandler, 'Product', null);
   };
 
   return (
